@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cryscat.github.io/"/>
-  <updated>2018-12-29T04:27:34.347Z</updated>
+  <updated>2018-12-29T03:52:17.775Z</updated>
   <id>http://cryscat.github.io/</id>
   
   <author>
@@ -15,20 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>OKOKOK</title>
-    <link href="http://cryscat.github.io/2018/12/29/OKOKOK/"/>
-    <id>http://cryscat.github.io/2018/12/29/OKOKOK/</id>
-    <published>2018-12-29T04:27:34.000Z</published>
-    <updated>2018-12-29T04:27:34.347Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Hello World</title>
