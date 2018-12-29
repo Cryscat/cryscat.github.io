@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cryscat.github.io/"/>
-  <updated>2018-12-29T12:00:43.729Z</updated>
+  <updated>2018-12-29T12:07:41.489Z</updated>
   <id>http://cryscat.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://cryscat.github.io/2018/12/29/diyizhang/"/>
     <id>http://cryscat.github.io/2018/12/29/diyizhang/</id>
     <published>2018-12-29T12:00:43.729Z</published>
-    <updated>2018-12-29T12:00:43.729Z</updated>
+    <updated>2018-12-29T12:07:41.489Z</updated>
     
     <content type="html"><![CDATA[<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="1-来了"><a href="#1-来了" class="headerlink" title="1.来了"></a><strong>1.来了</strong></h2><pre><code>&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;K0rz3n_secret_flag&lt;/span&gt; &lt;/span&gt;{    &lt;span class=&quot;hljs-keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;$file_path&lt;/span&gt;;    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;__destruct&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;{        &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt;(preg_match(&lt;span class=&quot;hljs-string&quot;&gt;&apos;/(log|etc|session|proc|read_secret|history|class)/i&apos;&lt;/span&gt;, &lt;span class=&quot;hljs-variable&quot;&gt;$this&lt;/span&gt;-&gt;file_path)){            &lt;span class=&quot;hljs-keyword&quot;&gt;die&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;Sorry Sorry Sorry&quot;&lt;/span&gt;);        }&lt;span class=&quot;hljs-keyword&quot;&gt;include_once&lt;/span&gt;(&lt;span class=&quot;hljs-variable&quot;&gt;$this&lt;/span&gt;-&gt;file_path); }}</code></pre><h2 id="1-走了"><a href="#1-走了" class="headerlink" title="1.走了"></a><strong>1.走了</strong></h2><p>&nbsp; 那不就看到办法几点上课呢1今年的少年富把房间看电视不鸟粉色发ID非农为鸟逗我呢ID不弄IE我你爹我能否in迪偶尔玩法分为</p>]]></content>
     
