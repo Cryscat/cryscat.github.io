@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cryscat.github.io/"/>
-  <updated>2018-12-29T10:58:44.388Z</updated>
+  <updated>2018-12-29T12:00:43.729Z</updated>
   <id>http://cryscat.github.io/</id>
   
   <author>
@@ -18,19 +18,39 @@
   
   <entry>
     <title></title>
-    <link href="http://cryscat.github.io/2018/12/29/hello-world/"/>
-    <id>http://cryscat.github.io/2018/12/29/hello-world/</id>
-    <published>2018-12-29T03:52:17.775Z</published>
-    <updated>2018-12-29T10:58:44.388Z</updated>
+    <link href="http://cryscat.github.io/2018/12/29/diyizhang/"/>
+    <id>http://cryscat.github.io/2018/12/29/diyizhang/</id>
+    <published>2018-12-29T12:00:43.729Z</published>
+    <updated>2018-12-29T12:00:43.729Z</updated>
     
-    <content type="html"><![CDATA[<hr><h2 id="title-Hello-World"><a href="#title-Hello-World" class="headerlink" title="title: Hello World"></a>title: Hello World</h2><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code>$ hexo &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;`&lt;/pre&gt;More info: [Writing](https://hexo.io/docs/writing.html)### Run server&lt;pre&gt;`$ hexo &lt;span class=&quot;hljs-keyword&quot;&gt;server&lt;/span&gt;`&lt;/pre&gt;More info: [Server](https://hexo.io/docs/server.html)### Generate static files&lt;pre&gt;`&lt;span class=&quot;hljs-variable&quot;&gt;$ &lt;/span&gt;hexo generate`&lt;/pre&gt;More info: [Generating](https://hexo.io/docs/generating.html)### Deploy to remote sites&lt;pre&gt;`&lt;span class=&quot;hljs-variable&quot;&gt;$ &lt;/span&gt;hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="1-来了"><a href="#1-来了" class="headerlink" title="1.来了"></a><strong>1.来了</strong></h2><pre><code>&lt;span class=&quot;hljs-class&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;K0rz3n_secret_flag&lt;/span&gt; &lt;/span&gt;{    &lt;span class=&quot;hljs-keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;hljs-variable&quot;&gt;$file_path&lt;/span&gt;;    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;__destruct&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;{        &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt;(preg_match(&lt;span class=&quot;hljs-string&quot;&gt;&apos;/(log|etc|session|proc|read_secret|history|class)/i&apos;&lt;/span&gt;, &lt;span class=&quot;hljs-variable&quot;&gt;$this&lt;/span&gt;-&gt;file_path)){            &lt;span class=&quot;hljs-keyword&quot;&gt;die&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&quot;Sorry Sorry Sorry&quot;&lt;/span&gt;);        }&lt;span class=&quot;hljs-keyword&quot;&gt;include_once&lt;/span&gt;(&lt;span class=&quot;hljs-variable&quot;&gt;$this&lt;/span&gt;-&gt;file_path); }}</code></pre><h2 id="1-走了"><a href="#1-走了" class="headerlink" title="1.走了"></a><strong>1.走了</strong></h2><p>&nbsp; 那不就看到办法几点上课呢1今年的少年富把房间看电视不鸟粉色发ID非农为鸟逗我呢ID不弄IE我你爹我能否in迪偶尔玩法分为</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;hr&gt;
-&lt;h2 id=&quot;title-Hello-World&quot;&gt;&lt;a href=&quot;#title-Hello-World&quot; class=&quot;headerlink&quot; title=&quot;title: Hello World&quot;&gt;&lt;/a&gt;title: Hello World&lt;/h2&gt;&lt;p&gt;Wel
+        &lt;h1 id=&quot;第一章&quot;&gt;&lt;a href=&quot;#第一章&quot; class=&quot;headerlink&quot; title=&quot;第一章&quot;&gt;&lt;/a&gt;第一章&lt;/h1&gt;&lt;h2 id=&quot;1-来了&quot;&gt;&lt;a href=&quot;#1-来了&quot; class=&quot;headerlink&quot; title=&quot;1.来了&quot;&gt;&lt;/a&gt;&lt;st
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://cryscat.github.io/2018/12/29/hello-world/"/>
+    <id>http://cryscat.github.io/2018/12/29/hello-world/</id>
+    <published>2018-12-29T03:52:17.775Z</published>
+    <updated>2018-12-29T11:56:41.467Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><h2 id="title-Hello-World"><a href="#title-Hello-World" class="headerlink" title="title: Hello World"></a>title: Hello World</h2><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code>$ hexo &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;hljs-keyword&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;new&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;hljs-string&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;&quot;My New Post&quot;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;`&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;pre&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;More info: [&lt;span class=&quot;hljs-link_label&quot;&gt;Writing&lt;/span&gt;](&lt;span class=&quot;hljs-link_url&quot;&gt;https://hexo.io/docs/writing.html&lt;/span&gt;)&lt;span class=&quot;hljs-header&quot;&gt;### Run server&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;pre&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;`$ hexo &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;hljs-keyword&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;server&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;`&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;pre&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;More info: [&lt;span class=&quot;hljs-link_label&quot;&gt;Server&lt;/span&gt;](&lt;span class=&quot;hljs-link_url&quot;&gt;https://hexo.io/docs/server.html&lt;/span&gt;)&lt;span class=&quot;hljs-header&quot;&gt;### Generate static files&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;pre&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;`&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;hljs-variable&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;$ &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;hexo generate`&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;pre&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;More info: [&lt;span class=&quot;hljs-link_label&quot;&gt;Generating&lt;/span&gt;](&lt;span class=&quot;hljs-link_url&quot;&gt;https://hexo.io/docs/generating.html&lt;/span&gt;)&lt;span class=&quot;hljs-header&quot;&gt;### Deploy to remote sites&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;pre&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;`&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;hljs-variable&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;$ &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;span&lt;/span&gt;&gt;&lt;/span&gt;&lt;/span&gt;hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Test&quot;&gt;&lt;a href=&quot;#Test&quot; class=&quot;headerlink&quot; title=&quot;Test&quot;&gt;&lt;/a&gt;Test&lt;/h1&gt;&lt;h2 id=&quot;title-Hello-World&quot;&gt;&lt;a href=&quot;#title-Hello-World&quot; class=&quot;he
       
     
     </summary>
