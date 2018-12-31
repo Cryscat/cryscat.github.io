@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cryscat.github.io/"/>
-  <updated>2018-12-31T06:57:09.279Z</updated>
+  <updated>2018-12-31T07:03:11.914Z</updated>
   <id>http://cryscat.github.io/</id>
   
   <author>
@@ -21,21 +21,21 @@
     <link href="http://cryscat.github.io/2018/12/31/Test/"/>
     <id>http://cryscat.github.io/2018/12/31/Test/</id>
     <published>2018-12-31T06:46:29.000Z</published>
-    <updated>2018-12-31T06:57:09.279Z</updated>
+    <updated>2018-12-31T07:03:11.914Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class K0rz3n_secret_flag &#123;</span><br><span class="line">    protected $file_path;</span><br><span class="line">    function __destruct()&#123;</span><br><span class="line">        if(preg_match(&apos;/(log|etc|session|proc|read_secret|history|class)/i&apos;, $this-&gt;file_path))&#123;</span><br><span class="line">            die(&quot;Sorry Sorry Sorry&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">include_once($this-&gt;file_path);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><h2 id="one"><a href="#one" class="headerlink" title="one"></a>one</h2><blockquote><p>this is a test</p></blockquote><h2 id="two"><a href="#two" class="headerlink" title="two"></a>two</h2><blockquote><p>单元人长久</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">K0rz3n_secret_flag</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $file_path;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preg_match(<span class="string">'/(log|etc|session|proc|read_secret|history|class)/i'</span>, <span class="keyword">$this</span>-&gt;file_path))&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"Sorry Sorry Sorry"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="keyword">include_once</span>(<span class="keyword">$this</span>-&gt;file_path);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><h2 id="one"><a href="#one" class="headerlink" title="one"></a>one</h2><blockquote><p>this is a test</p></blockquote><h2 id="two"><a href="#two" class="headerlink" title="two"></a>two</h2><blockquote><p>单元人长久</p></blockquote><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://img-blog.csdnimg.cn/20181231150203151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjkxOTQ2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" title="">                </div>                <div class="image-caption">在这里插入图片描述</div>            </figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;测试&quot;&gt;&lt;a href=&quot;#测试&quot; class=&quot;headerlink&quot; title=&quot;测试&quot;&gt;&lt;/a&gt;测试&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span 
+        &lt;h1 id=&quot;测试&quot;&gt;&lt;a href=&quot;#测试&quot; class=&quot;headerlink&quot; title=&quot;测试&quot;&gt;&lt;/a&gt;测试&lt;/h1&gt;&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span cl
       
     
     </summary>
     
     
-      <category term="JS SS gg" scheme="http://cryscat.github.io/tags/JS-SS-gg/"/>
+      <category term="JS" scheme="http://cryscat.github.io/tags/JS/"/>
     
   </entry>
   
