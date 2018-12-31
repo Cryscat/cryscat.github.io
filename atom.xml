@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cryscat.github.io/"/>
-  <updated>2018-12-31T06:49:13.032Z</updated>
+  <updated>2018-12-31T06:52:17.783Z</updated>
   <id>http://cryscat.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://cryscat.github.io/2018/12/31/Test/"/>
     <id>http://cryscat.github.io/2018/12/31/Test/</id>
     <published>2018-12-31T06:46:29.000Z</published>
-    <updated>2018-12-31T06:49:13.032Z</updated>
+    <updated>2018-12-31T06:52:17.783Z</updated>
     
-    <content type="html"><![CDATA[<p>#测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class K0rz3n_secret_flag &#123;</span><br><span class="line">    protected $file_path;</span><br><span class="line">    function __destruct()&#123;</span><br><span class="line">        if(preg_match(&apos;/(log|etc|session|proc|read_secret|history|class)/i&apos;, $this-&gt;file_path))&#123;</span><br><span class="line">            die(&quot;Sorry Sorry Sorry&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">include_once($this-&gt;file_path);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p><p>##one</p><blockquote><p>this is a test</p></blockquote><p>##two</p>]]></content>
+    <content type="html"><![CDATA[<p>#测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class K0rz3n_secret_flag &#123;</span><br><span class="line">    protected $file_path;</span><br><span class="line">    function __destruct()&#123;</span><br><span class="line">        if(preg_match(&apos;/(log|etc|session|proc|read_secret|history|class)/i&apos;, $this-&gt;file_path))&#123;</span><br><span class="line">            die(&quot;Sorry Sorry Sorry&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">include_once($this-&gt;file_path);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p><p>##one</p><blockquote><p>this is a test</p></blockquote><p>##two</p><blockquote><p>单元人长久</p></blockquote>]]></content>
     
     <summary type="html">
     
@@ -34,6 +34,8 @@
     
     </summary>
     
+    
+      <category term="-JS -KK" scheme="http://cryscat.github.io/tags/JS-KK/"/>
     
   </entry>
   
