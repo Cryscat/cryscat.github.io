@@ -5,9 +5,9 @@
   <subtitle>一只安全狗</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://cryscat.github.io/"/>
+  <link href="http://cryscat.com/"/>
   <updated>2019-01-02T15:06:30.053Z</updated>
-  <id>http://cryscat.github.io/</id>
+  <id>http://cryscat.com/</id>
   
   <author>
     <name>Cryscat</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Markdown语法</title>
-    <link href="http://cryscat.github.io/2019/01/02/Markdown%E8%AF%AD%E6%B3%95/"/>
-    <id>http://cryscat.github.io/2019/01/02/Markdown语法/</id>
+    <link href="http://cryscat.com/2019/01/02/Markdown%E8%AF%AD%E6%B3%95/"/>
+    <id>http://cryscat.com/2019/01/02/Markdown语法/</id>
     <published>2019-01-02T14:58:44.000Z</published>
     <updated>2019-01-02T15:06:30.053Z</updated>
     
@@ -35,9 +35,9 @@
     </summary>
     
     
-      <category term="Markdown" scheme="http://cryscat.github.io/tags/Markdown/"/>
+      <category term="Markdown" scheme="http://cryscat.com/tags/Markdown/"/>
     
-      <category term="Hexo" scheme="http://cryscat.github.io/tags/Hexo/"/>
+      <category term="Hexo" scheme="http://cryscat.com/tags/Hexo/"/>
     
   </entry>
   
