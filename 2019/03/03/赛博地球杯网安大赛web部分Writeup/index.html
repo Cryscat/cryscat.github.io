@@ -25,24 +25,24 @@
 <meta name="keywords" content="XCTF,Writeup">
 <meta property="og:type" content="article">
 <meta property="og:title" content="赛博地球杯网安大赛web部分Writeup">
-<meta property="og:url" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/index.html">
+<meta property="og:url" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/index.html">
 <meta property="og:site_name" content="Cryscat&#39;s Blog">
 <meta property="og:description" content="0X00 前言菜却坚强…… 0X01 大量设备报表不见了脑洞题…看到这个url首先想到sql注入，但是一顿乱锤毫无进展，看来不是sql注入爆破id试试id=2333时爆出flag 0X02 工控管理系统新版本大致浏览一下有login.php，regist.php，findpwd.php这三个页面在findpwd.php页面发现搜索框存在sql注入并且fuzz测试无任何过滤，直接上sqlmap吧，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/1.jpg">
-<meta property="og:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/2.jpg">
-<meta property="og:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/3.jpg">
-<meta property="og:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/4.jpg">
-<meta property="og:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/5.jpg">
-<meta property="og:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/6.jpg">
-<meta property="og:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/7.jpg">
-<meta property="og:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/8.jpg">
-<meta property="og:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/9.jpg">
+<meta property="og:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/1.jpg">
+<meta property="og:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/2.jpg">
+<meta property="og:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/3.jpg">
+<meta property="og:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/4.jpg">
+<meta property="og:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/5.jpg">
+<meta property="og:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/6.jpg">
+<meta property="og:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/7.jpg">
+<meta property="og:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/8.jpg">
+<meta property="og:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/9.jpg">
 <meta property="og:updated_time" content="2019-03-04T15:28:41.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="赛博地球杯网安大赛web部分Writeup">
 <meta name="twitter:description" content="0X00 前言菜却坚强…… 0X01 大量设备报表不见了脑洞题…看到这个url首先想到sql注入，但是一顿乱锤毫无进展，看来不是sql注入爆破id试试id=2333时爆出flag 0X02 工控管理系统新版本大致浏览一下有login.php，regist.php，findpwd.php这三个页面在findpwd.php页面发现搜索框存在sql注入并且fuzz测试无任何过滤，直接上sqlmap吧，">
-<meta name="twitter:image" content="https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/1.jpg">
+<meta name="twitter:image" content="https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/1.jpg">
     
         <link rel="alternate" type="application/atom+xml" title="Cryscat&#39;s Blog" href="/atom.xml">
     
@@ -259,7 +259,7 @@
         <blockquote class="post-copyright">
     
     <footer>
-        <a href="https://cryscat.com">
+        <a href="https://www.cryscat.com">
             <img src="/img/avatar.jpg" alt="Cryscat">
             Cryscat
         </a>
@@ -281,7 +281,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&pic=https://cryscat.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&pic=https://www.cryscat.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -291,22 +291,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&url=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&via=https://cryscat.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&url=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&via=https://www.cryscat.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -385,7 +385,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&pic=https://cryscat.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&pic=https://www.cryscat.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -395,22 +395,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&title=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&url=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&via=https://cryscat.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《赛博地球杯网安大赛web部分Writeup》 — Cryscat's Blog&url=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/&via=https://www.cryscat.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://www.cryscat.com/2019/03/03/赛博地球杯网安大赛web部分Writeup/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -421,7 +421,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3a0WrrQAwE0P7/T+fCfS2OZyRvm8LxU0kTe88GsmKkr6/4ev2/rl7/fl196uq/3z/7/v0PX3h4eHijpecLvVpKfrdkE/M13DwFDw8P7xhv87D3yPye71eVPB0PDw/v03htBZsstz1m8PDw8P4W7/3S8/ds7o+Hh4f3ObwkjJiFrXv2D2UteHh4ePM0NQpYf/fvg/09PDw8vEVXfRME5MV3O4hQrBYPDw/vAC9pNSWv54NZ7ehVQr1ZGx4eHt6jvNfoarcgD3kTZB5/4OHh4Z3jtQHEZuCgKIXjhOHydTw8PLxjvDYgSEaskk1pw4t8rAEPDw/vHK8NYWc/8bOQIm/IDTt4eHh4eAveLCaYNavyO89C5MsGGB4eHt5DvDYUaMvrWYmcRw838QceHh7eAd4+eE0K5WQLZpFxdAjh4eHhPcrLA4g8bshbWW0gUse+eHh4eAd4bWsqf09+wMzCizrYxcPDwzvMm/XQ2kOlDS/awQU8PDy8E7xXeeWb0savRXaSbzQeHh7eAV47/NQiZ0FtWzrfbAQeHh7eAV4eLuSHxCZybUON4jvEw8PDO8Zri9ckeG2j4fyAqQ8GPDw8vAUviW7zmyahw1PHz2PJNB4eHt5o6mlWLu+X0gYQw2gYDw8P71FeW8ImgLZQ3hf0N98bHh4e3jFe27AvItS4eZYfMNHxgIeHh3eA91QSvBnSysOLWbGOh4eH9yxvExbsRwrq72HTncPDw8M7wJu1o9qf/iSQbceqLg82PDw8vAO8WWDaDhbMDqH9OAIeHh7eOd5+iGr2Y50/sd04PDw8vJ/htT/W+8Ng/9nkPnh4eHi/yzuxxH0Hrxi9wsPDw/sYXjt6tR9HyAtuPDw8vHO8WdH8/mFtNJwMFtRDDHh4eHgHeG0DrIhQywh4f5/VeBYeHh7ePe8f+RCSl3igMZIAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aQU4DMQwF0N7/0iCxYkHDtx2XIr1ZVepMyAvSxP3O4xFfH1/X98/PrvP955Hz8S9feHh4eK2p59PNRzuPn+CrY/4wDh4eHt4aL98Mzvecp5VsCeelz+eMh4eH9w68/J7qkuXbAx4eHt7/4iVlcRV8HgEPDw/vnXlVwLngPk83X4jqfPDw8PBew+s1wP7283p/Dw8PD6/VVa8eC0j+fB71fowvPDw8vA1e3ojKG1qTQLYaRkTbBh4eHt4CbxIB9ELYJJjoBR9RVo2Hh4d3lTc/ClAds1qON4954eHh4V3iNVdivBnkxfQkqsDDw8Pb4E2aTxul8KQ5F2UteHh4eJd4zRdusbWfPFsdIf8WDw8P7xavN93kSEGvLK4W9KPOHh4eHl6Ll5fIvXhifhQg3zCi3w14eHh4Y14PUH02jy16Me7TeeLh4eEt8CaRwaSALpTC8bI+qgPh4eHhXeJNGva9gKMaUoxSajw8PLyrvGqUkGwb+UJUn03+DXh4eHgbvMgdvOJ7AUS1GVbeePDw8PAWeNW2Vl4KJ8vRCyzybQYPDw9vj3chvWiFsLc2iWpsgYeHhzfhVUvYXkyQH03Iy/poG8PDw8Nb4E0enrTHekFGdQQ8PDy8DV7+Cp4UvtVgorfxPC2p8fDw8NZ4eWIxP6eQvNyri/7DZzw8PLwFXvU1PX+V522t3paDh4eHt82bHI1KSvNk5N72EC0cHh4e3jIvuXqTziOMvHlWiHHx8PDwrvLmL9/qn6w2xpItpBep4OHh4U141c0gDxeqL/pey+2XZ/Hw8PDWeHmUkBww7ZXO88bYLyk1Hh4e3st51eC1+m1+fx494+Hh4b0Dr7pVJOXyZGmiMAIPDw9vgdeLWXtldL5A84AYDw8Pb4NX/amff5u3uKoTutDTw8PDw+vwPgG/7SvwruXAwQAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
