@@ -14,7 +14,7 @@
     
     
     
-    <title>Cryscat&#39;s Blog | 一只安全狗</title>
+    <title>Tags: 关于我 | Cryscat&#39;s Blog | 一只安全狗</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#000000">
@@ -24,7 +24,7 @@
     <meta name="description" content="在信安界苟延残喘">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cryscat&#39;s Blog">
-<meta property="og:url" content="http://www.cryscat.com/index.html">
+<meta property="og:url" content="http://www.cryscat.com/tags/关于我/index.html">
 <meta property="og:site_name" content="Cryscat&#39;s Blog">
 <meta property="og:description" content="在信安界苟延残喘">
 <meta property="og:locale" content="zh-CN">
@@ -65,7 +65,7 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/">
                 <i class="icon icon-lg icon-home"></i>
                 Home
@@ -79,7 +79,7 @@
               </a>
             </li>
         
-            <li class="waves-block waves-effect">
+            <li class="waves-block waves-effect active">
               <a href="/tags">
                 <i class="icon icon-lg icon-tags"></i>
                 Tags
@@ -125,7 +125,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Cryscat&#39;s Blog</div>
+        <div class="flex-col header-title ellipsis">Tags: 关于我</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -144,128 +144,74 @@
         
     </div>
 </header>
-<header class="content-header index-header">
+<header class="content-header tags-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Cryscat&#39;s Blog</h1>
+        <h1 class="title">Tags: 关于我</h1>
         <h5 class="subtitle">
-            
-                一只安全狗
             
         </h5>
     </div>
 
     
+<div class="tabs-bar container">
+    <nav class="tags-list">
+        <a href="/tags" style="-webkit-order:-1;order:-1" class="tags-list-item waves-effect waves-button waves-light
+            ">全部</a>
+        
+
+            <a href="/tags/关于我/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light active">关于我</a>
+
+        
+
+            <a href="/tags/友链/" style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light">友链</a>
+
+        
+
+            <a href="/tags/志当存高远/" style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">志当存高远</a>
+
+        
+
+            <a href="/tags/Markdown/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">Markdown</a>
+
+        
+
+            <a href="/tags/Hexo/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">Hexo</a>
+
+        
+
+            <a href="/tags/XCTF/" style="-webkit-order:5;order:5" class="tags-list-item waves-effect waves-button waves-light">XCTF</a>
+
+        
+
+            <a href="/tags/Writeup/" style="-webkit-order:6;order:6" class="tags-list-item waves-effect waves-button waves-light">Writeup</a>
+
+        
+    </nav>
+    <!-- PC show more-->
+    <div class="tags-list-more">
+        <a href="javascript:;" onclick="BLOG.tabBar(this)" class="action tags-list-item waves-effect waves-circle waves-light"><i class="icon icon-ellipsis-h"></i></a>
+    </div>
+</div>
+
 
 
 </header>
 
-<div class="container body-wrap">
-
-    <ul class="post-list">
+<div class="container body-wrap fade">
     
-        <li class="post-list-item fade">
-            <article id="post-赛博地球杯网安大赛web部分Writeup" class="article-card article-type-post" itemprop="blogPost">
+            <div class="waterfall">
+          
 
+            <div class="waterfall-item">
+  <article class="article-card archive-article">
     <div class="post-meta">
-        <time class="post-time" title="2019-03-03 17:44:35" datetime="2019-03-03T09:44:35.000Z" itemprop="datePublished">2019-03-03</time>
+      <time class="post-time" title="2018-12-22 23:22:45" datetime="2018-12-22T15:22:45.000Z" itemprop="datePublished">2018-12-22</time>
 
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/03/03/赛博地球杯网安大赛web部分Writeup/">赛博地球杯网安大赛web部分Writeup</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-0X00 前言菜却坚强……
-0X01 大量设备报表不见了脑洞题…看到这个url首先想到sql注入，但是一顿乱锤毫无进展，看来不是sql注入爆破id试试id=2333时爆出flag
-0X02 工控管理系统新版本大致浏览一下有login.php，regist.php，findpwd.php这三个页面在findpwd.php页面发现搜索框存在sql注入并且fuzz测试无任何过滤，直接上sqlma...
-    
-
-        <a href="/2019/03/03/赛博地球杯网安大赛web部分Writeup/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Writeup/">Writeup</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XCTF/">XCTF</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Markdown语法" class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-01-02 22:58:44" datetime="2019-01-02T14:58:44.000Z" itemprop="datePublished">2019-01-02</time>
-
-        
+      
 
 
     </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/01/02/Markdown语法/">Markdown语法</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        快捷键撤销：Ctrl/Command + Z重做：Ctrl/Command + Y加粗：Ctrl/Command + B斜体：Ctrl/Command + I标题：Ctrl/Command + Shift + H无序列表：Ctrl/Command + Shift + U有序列表：Ctrl/Command + Shift + O检查列表：Ctrl/Command + Shift + C插入代码...
-    
-
-        <a href="/2019/01/02/Markdown语法/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-关于我" class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-12-22 23:22:45" datetime="2018-12-22T15:22:45.000Z" itemprop="datePublished">2018-12-22</time>
-
-        
-
-
-    </div>
-
     
 
 
@@ -277,22 +223,6 @@
 
 
 
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-关于我CTF热爱者(Web垫底师)安全圈苟延残喘ing……QQ:1250130239Email:cry3c4t@gmail.com欢迎圈里的朋友一起学习讨论！
-友情链接
-MagicBlueWisdomTree郁离歌K0rz3n TGAO
-
-
-    
-
-        <a href="/2018/12/22/关于我/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
     
     <div class="post-footer">
         
@@ -300,15 +230,15 @@ MagicBlueWisdomTree郁离歌K0rz3n TGAO
 
     </div>
     
-</article>
-
-        </li>
-    
-    </ul>
-
-    
-
+  </article>
 </div>
+
+        
+            </div>
+        
+    
+</div>
+
 
         <footer class="footer">
     <div class="bottom">
@@ -330,7 +260,7 @@ MagicBlueWisdomTree郁离歌K0rz3n TGAO
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.cryscat.com/&title=Cryscat's Blog&pic=http://www.cryscat.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.cryscat.com/tags/关于我/&title=Cryscat's Blog&pic=http://www.cryscat.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -340,22 +270,22 @@ MagicBlueWisdomTree郁离歌K0rz3n TGAO
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.cryscat.com/&title=Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.cryscat.com/tags/关于我/&title=Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cryscat.com/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cryscat.com/tags/关于我/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Cryscat's Blog&url=http://www.cryscat.com/&via=http://www.cryscat.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Cryscat's Blog&url=http://www.cryscat.com/tags/关于我/&via=http://www.cryscat.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.cryscat.com/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.cryscat.com/tags/关于我/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -366,7 +296,7 @@ MagicBlueWisdomTree郁离歌K0rz3n TGAO
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABWUlEQVR42u3aMRLDIAxEUd//0mQmVRo0u5Ipwn6qjB3Dc2EQQs8jt/Vtu+u/d9emPScaLFgXsVbZapYO1ceCBSuZVU8Ku67rfyp3t9dhwYJ1jAILFqy3Joj55AILFqxJ0FyHv3WfB2N5WLCuYLmJpMnvg/ktWLD+lrVaTVmqR/3DghXG2i3D7x7AKBtg6QFYsK5mKckjJW3US+ZKLwYLVhhrXnCgPFtvjGHBymTpySD3iGW0SMOCFcPqFfT0ChGMlC4sWGEsvWt9APeVtq8BC1YYSwltlYX5SMwOC1YMS/m8lSv6RCAF3LBgRbL0hVnZmvYSuEYEAQvWRaxJqYE7mBE0w4IVxuqF1G5w3DsihQUrjeUeosxDaiO/BQtWGEufFPTDlUkpAyxYsPTh3e2uXqYACxYsN8HkTivSZhUWrEiWfkCiJ5vcMllYsJJZvUSSuxi7h6CwYMWwPnP6z0ex0DpdAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxUlEQVR42u3aS27DMAwFwNz/0u4BUjuPpKU4wGgVpLU8yoIQP69XvI63dfbX9++vd3utWLi4uGPucbmuuUewzoj5Pri4uN/inkWMZOuzfZID5AZcXNxf4eaXoTyo4eLi/iK3+lSSGuHi4j6Tm19H8sNUrzg352q4uLgDbl6lXPd5SX0XFxe3xT2Ka5Lq3PB2XFzcLdw8oFQvKJPCyod2LC4u7kZu3ljNnyqXPIL34uLi7udWB6p6h8kLrB8CGS4u7mJuXhDJA1z+cxT+HxcX9wHcPHVJXlktvoxyNVxc3DG3lwL1LkCTsQ9cXNz93DwM9YYt5kUWXFzc1dxJOySPLb006Z/34uLibuHOi5t5C6SaCDWbrLi4uDdxq+NWSTpURVQTJFxc3NXc66DTO3H1WpMER1xc3P3c6y0moae3Q5T84OLibuT20ElArDZ0yzESFxd3zD2KazKwladYhQdwcXEXcPOVB7LkeJMmDS4u7h5u3tLIh6jyxkx+PFxc3P3cnJIfch5Bo/ouLi7uI7nVxGYyBIaLi/tkbnLFmRRNToW4uLgbub3RyTxpyQuvH34sXFzcLdxqKKkOXVWvR7fVd3FxcTvcP7gv2Fe/7xtrAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
