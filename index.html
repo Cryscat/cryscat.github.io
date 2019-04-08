@@ -51,7 +51,7 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/mm.jpg)">
+    <div class="brand-wrap" style="background-image:url(/img/bg.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
           <img src="/img/avatar.jpg">
@@ -163,6 +163,60 @@
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-一次有趣的XSS弹弹乐" class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-04-08 21:20:32" datetime="2019-04-08T13:20:32.000Z" itemprop="datePublished">2019-04-08</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/04/08/一次有趣的XSS弹弹乐/">一次有趣的XSS弹弹乐</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+主页：
+对着输入框一顿乱锤没反应，还是老老实实注册了个账号登进去了登进去是这样的：
+site填入自己的服务器地址发现他会访问。经过简单测试发现这里存在反射型XSS，通过大写可以绕过waf
+
+\alert(1)&lt;\SCRIPT&gt;
+
+
+但输入的内容不符合网站格式，admin不会访问
+这里发现一个getInfo接口，返回 jsonp 数据，也存在反射型xss,而且没上waf
+访问接口...
+    
+
+        <a href="/2019/04/08/一次有趣的XSS弹弹乐/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技巧/">技巧</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-嘉韦斯杯Writeup" class="article-card article-type-post" itemprop="blogPost">
@@ -480,5 +534,5 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":90,"height":180},"mobile":{"show":true},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":90,"height":180},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
 </html>
