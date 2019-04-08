@@ -191,16 +191,15 @@
 
     
         
-主页：
+这是标题(๑¯∀¯๑)主页：
 对着输入框一顿乱锤没反应，还是老老实实注册了个账号登进去了登进去是这样的：
 site填入自己的服务器地址发现他会访问。经过简单测试发现这里存在反射型XSS，通过大写可以绕过waf
 
-\alert(1)&lt;\SCRIPT&gt;
+\&lt;SCRIPT>alert(1)\&lt;\SCRIPT>
 
 
 但输入的内容不符合网站格式，admin不会访问
-这里发现一个getInfo接口，返回 jsonp 数据，也存在反射型xss,而且没上waf
-访问接口...
+这里发现一个getInfo接口，返回 jsonp 数据，也存...
     
 
         <a href="/2019/04/08/一次有趣的XSS弹弹乐/" class="post-more waves-effect waves-button">
