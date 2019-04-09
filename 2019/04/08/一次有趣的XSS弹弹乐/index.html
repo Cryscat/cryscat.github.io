@@ -20,9 +20,9 @@
     <meta name="theme-color" content="#000000">
     
     
-    <meta name="keywords" content="XSS,技巧,Note,CTF">
+    <meta name="keywords" content="XSS,Trick,Note,CTF">
     <meta name="description" content="这是标题(๑¯∀¯๑)主页： 对着输入框一顿乱锤没反应，还是老老实实注册了个账号登进去了登进去是这样的： site填入自己的服务器地址发现他会访问。经过简单测试发现这里存在反射型XSS，通过大写可以绕过waf  &amp;lt;SCRIPT&amp;gt;alert(1)&amp;lt;SCRIPT&amp;gt;   但输入的内容不符合网站格式，admin不会访问 这里发现一个getInfo接口，返回 jsonp 数据，也存在反射型xs">
-<meta name="keywords" content="XSS,技巧,Note,CTF">
+<meta name="keywords" content="XSS,Trick,Note,CTF">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一次有趣的XSS弹弹乐">
 <meta property="og:url" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/index.html">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/6.jpg">
 <meta property="og:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/7.jpg">
 <meta property="og:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/8.jpg">
-<meta property="og:updated_time" content="2019-04-09T03:21:55.114Z">
+<meta property="og:updated_time" content="2019-04-09T09:37:32.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次有趣的XSS弹弹乐">
 <meta name="twitter:description" content="这是标题(๑¯∀¯๑)主页： 对着输入框一顿乱锤没反应，还是老老实实注册了个账号登进去了登进去是这样的： site填入自己的服务器地址发现他会访问。经过简单测试发现这里存在反射型XSS，通过大写可以绕过waf  &amp;lt;SCRIPT&amp;gt;alert(1)&amp;lt;SCRIPT&amp;gt;   但输入的内容不符合网站格式，admin不会访问 这里发现一个getInfo接口，返回 jsonp 数据，也存在反射型xs">
@@ -243,7 +243,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技巧/">技巧</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Note/">Note</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Trick/">Trick</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XSS/">XSS</a></li></ul>
 
 
             
@@ -454,5 +454,5 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.75},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":0},"mobile":{"show":true,"scale":0.75},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
