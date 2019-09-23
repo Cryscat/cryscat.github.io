@@ -35,9 +35,9 @@
     </summary>
     
     
-      <category term="Writeup" scheme="http://www.cryscat.com/tags/Writeup/"/>
-    
       <category term="CTF" scheme="http://www.cryscat.com/tags/CTF/"/>
+    
+      <category term="Writeup" scheme="http://www.cryscat.com/tags/Writeup/"/>
     
       <category term="强网杯" scheme="http://www.cryscat.com/tags/%E5%BC%BA%E7%BD%91%E6%9D%AF/"/>
     
@@ -62,11 +62,11 @@
     </summary>
     
     
+      <category term="CTF" scheme="http://www.cryscat.com/tags/CTF/"/>
+    
       <category term="ISCC" scheme="http://www.cryscat.com/tags/ISCC/"/>
     
       <category term="Writeup" scheme="http://www.cryscat.com/tags/Writeup/"/>
-    
-      <category term="CTF" scheme="http://www.cryscat.com/tags/CTF/"/>
     
       <category term="Web" scheme="http://www.cryscat.com/tags/Web/"/>
     
@@ -92,13 +92,13 @@
     </summary>
     
     
-      <category term="CTF" scheme="http://www.cryscat.com/tags/CTF/"/>
-    
       <category term="XSS" scheme="http://www.cryscat.com/tags/XSS/"/>
     
       <category term="Trick" scheme="http://www.cryscat.com/tags/Trick/"/>
     
       <category term="Note" scheme="http://www.cryscat.com/tags/Note/"/>
+    
+      <category term="CTF" scheme="http://www.cryscat.com/tags/CTF/"/>
     
   </entry>
   
