@@ -61,11 +61,11 @@
     
     
     
-    <category term="ISCC" scheme="http://www.cryscat.com/tags/ISCC/"/>
-    
     <category term="Writeup" scheme="http://www.cryscat.com/tags/Writeup/"/>
     
     <category term="CTF" scheme="http://www.cryscat.com/tags/CTF/"/>
+    
+    <category term="ISCC" scheme="http://www.cryscat.com/tags/ISCC/"/>
     
     <category term="Web" scheme="http://www.cryscat.com/tags/Web/"/>
     
@@ -90,13 +90,13 @@
     
     
     
-    <category term="CTF" scheme="http://www.cryscat.com/tags/CTF/"/>
-    
     <category term="XSS" scheme="http://www.cryscat.com/tags/XSS/"/>
     
     <category term="Trick" scheme="http://www.cryscat.com/tags/Trick/"/>
     
     <category term="Note" scheme="http://www.cryscat.com/tags/Note/"/>
+    
+    <category term="CTF" scheme="http://www.cryscat.com/tags/CTF/"/>
     
   </entry>
   
